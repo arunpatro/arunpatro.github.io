@@ -65,14 +65,14 @@ A rubik's cube can be moved in only these 12 atomic moves.
 
 #### Position Notation
 
-| Face      | Edge Notation | Corner Notation |
-| ------------- | ------------- | ---| 
-| Up | ![](edge-u.png) | ![](corner-u.png)| 
-| Front | ![](edge-f.png) | ![](corner-f.png)| 
-| Right | ![](edge-r.png) | ![](corner-r.png)| 
-| Back | ![](edge-b.png) | ![](corner-b.png)| 
-| Left | ![](edge-l.png) | ![](corner-l.png)| 
-| Down | ![](edge-d.png) | ![](corner-d.png)| 
+| Face  | Edge Notation         | Corner Notation       |
+| ----- | --------------------- | --------------------- | 
+| Up    | ![](imgs/edge-u.png)  | ![](imgs/corner-u.png)| 
+| Front | ![](imgs/edge-f.png)  | ![](imgs/corner-f.png)|
+| Right | ![](imgs/edge-r.png)  | ![](imgs/corner-r.png)|
+| Back  | ![](imgs/edge-b.png)  | ![](imgs/corner-b.png)|
+| Left  | ![](imgs/edge-l.png)  | ![](imgs/corner-l.png)|
+| Down  | ![](imgs/edge-d.png)  | ![](imgs/corner-d.png)|
 
 ### Old Pochman Method
 This is the 1-algorithm solution to solving the entire rubik's cube. If you pair it with memorizing the positions of all the 20 pieces, you can solve it blindfolded.
