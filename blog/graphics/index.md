@@ -1,4 +1,4 @@
-## benchmaring rust vs cpp for ray tracing
+## benchmaring rust-vs-cpp for ray tracing
 
 ### Introduction
 The graphics class at NYU was a great motivation for me to dive deep into compiled languages like `Cpp` and `Rust`. I implement simple raytracing scenes in cpp (class default) and later in rust by trying to replicate similar code structure albeit a few obv differences like OOP vs Impl-Traits. 
