@@ -9,11 +9,12 @@ I profile both code to find out the pros/cons of coding in either language. Cpp 
 `C++` code uses `Eigen` for numerical computing. `Rust` uses the `nlalgebra` crate. 
 
 ### Observations
-We observe that 
-1. cpp compiles faster, produces a smaller binary and is faster
+We have some observations:
+1. cpp compiles faster and produces a smaller binary and is not significantly faster than rust.
 2. rust is easier to debug
 3. floating point math is inaccurate and gives different intermediate results for both
-4. using link time optimization in rust gives faster compile time, runtime and smaller binary
+4. link-time-optimization (LTO) in rust is faster to compile than rust without LTO ??
+5. Rust with LTO is slower than without LTO ??
 
 ### [Image 01]: Reflection with 7 Spheres and 1 Plane
 <img src="./scene.png">
