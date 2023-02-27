@@ -24,7 +24,6 @@ We have some observations:
 Objects: 7 Spheres and 1 Plane
 Material: Reflective and Specular
 Camera: fov: 45, focal length = 5, position = (0, 1, 10), Perspective
-Sensor Size: 1600x800 pixels
 ```
 
 
