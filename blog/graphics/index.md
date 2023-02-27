@@ -26,9 +26,12 @@ Camera: fov: 45, focal length = 5, position = (0, 1, 10), Perspective
 Sensor Size: 1600x800 pixels
 ```
 
+
 Benchmarking results:
+
 |      | compile time | runtime 1600x800 | runtime 2400x1200 | binary size |
-|------|--------------|------------------|-------------------| ----------- |
-| C++  | 6.077s       | 3.110s            |   6.728s           | 109KB      |
-| Rust | 1m 23s       | 1.567s            |   2.778s           | 1.5MB      |
-| Rust (LTO) | 54.227s | 3.101s | 6.914s | 760KB |
+| ---: | ---:        | ---:              | ---:               | ---:        |
+| C++  | 6.077s      | 3.110s            | 6.728s             | 109KB       |
+| Rust | 1m 23s      | 1.567s            | 2.778s             | 1.5MB       |
+| Rust (LTO) | 54.227s | 3.101s            | 6.914s             | 760KB       |
+
