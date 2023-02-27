@@ -17,6 +17,11 @@ We have some observations:
 5. Rust with LTO is slower than without LTO ??
 6. How can thin LTO be faster than LTO ??
 
+### Profiling C++ vs Rust
+- I use xcode Instruments to profile both C++ and Rust code. Rust executables have a ordered way of creating debug symbols and this helps in finding the order of the function call inside another. This is not the case with cpp, which just bundles all function calls to one. 
+- This can be due to recursion of reflected rays, I can try to profile without reflection. 
+
+
 ### [Image 01]: Reflection with 7 Spheres and 1 Plane
 <img src="./scene.png">
 
