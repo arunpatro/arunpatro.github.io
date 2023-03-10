@@ -33,11 +33,52 @@ Camera: fov: 45, focal length = 5, position = (0, 1, 10), Perspective
 
 
 Benchmarking results:
-
-|      | compile time | runtime 1600x800 | runtime 2400x1200 | binary size |
-| :--- | ---:        | ---:              | ---:               | ---:        |
-| C++  | 6.077s      | 3.110s            | 6.728s             | 109KB       |
-| Rust | 1m 23s      | 1.567s            | 2.778s             | 1.5MB       |
-| Rust (LTO) | 54.227s | 3.101s            | 6.914s             | 760KB       |
-| Rust (Thin LTO) | 1m 15s | 2.056s            | 4.170s             | 1.4MB       |
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>compile time</th>
+      <th>runtime 1600x800</th>
+      <th>runtime 2400x1200</th>
+      <th>binary size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>C++</td>
+      <td>6.077s</td>
+      <td>3.110s</td>
+      <td>6.70 +- 0.46s</td>
+      <td>109KB</td>
+    </tr>
+    <tr>
+      <td>C++ (G++ LTO)</td>
+      <td>-</td>
+      <td>-</td>
+      <td>4.60 +- 0.49s</td>
+      <td>70KB</td>
+    </tr>
+    <tr>
+      <td>Rust</td>
+      <td>1m 23s</td>
+      <td>1.567s</td>
+      <td>2.778s</td>
+      <td>1.5MB</td>
+    </tr>
+    <tr>
+      <td>Rust (LTO)</td>
+      <td>54.227s</td>
+      <td>3.101s</td>
+      <td>6.914s</td>
+      <td>760KB</td>
+    </tr>
+    <tr>
+      <td>Rust (Thin LTO)</td>
+      <td>1m 15s</td>
+      <td>2.056s</td>
+      <td>4.170s</td>
+      <td>1.4MB</td>
+    </tr>
+  </tbody>
+</table>
 
