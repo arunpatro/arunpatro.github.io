@@ -1,12 +1,34 @@
-## benchmaring rust-vs-cpp for ray tracing
+## benchmaring rust-vs-cpp (also mojo and python) for ray tracing
+
+Resources
+https://docs.google.com/spreadsheets/d/1OQ_U8fY8DCzwz8CoYbobhHeJ4oKW49x4uOhf4Yy9mwU/edit#gid=0
+
 
 ### Introduction
-The graphics class at NYU was a great motivation for me to dive deep into compiled languages like `C++` and `Rust`. I implement simple raytracing scenes in cpp (class default) and later in rust by trying to replicate similar code structure albeit a few obv differences like `OOP` vs `Trait-Impl`. 
+The graphics class at NYU was a great motivation for me to dive deep into compiled languages like `C++` and `Rust`. I implement simple raytracing scenes in cpp (class default) and later in rust by trying to replicate similar code structure albeit a few obv differences like `OOP` vs `Struct-Impl-Trait`. This benchmark is purely on CPUs, as GPUs involve Shading Languages and more thoughtful logic. It would be interesting to study building modern day graphics based on `webgpu` , `vulcan`, `metal-3` and and also target the `wasm` architecture. All of them are really optimized! 
+
+We start with a simple explanation of the task in english, followed by python to express it more formally. We show how one might implement this in C++, which is what I had to do in the course. And finally, compare it with a similar rust implementation. I comment on my observations in this section: 
 
 I profile both code to find out the pros/cons of coding in either language. Cpp is the baseline.
 
 
-`C++` code uses `Eigen` for numerical computing. `Rust` uses the `nlalgebra` crate. 
+### Tasks
+We test the languages with 3 tasks:
+1. Ray Tracing (3 images)
+2. Ray Tracing with BVH accelaration (2 objects)
+3. CPU Rasterization (2 videos)
+
+
+### 1> Ray Tracing
+This is a simple explanation of ray tracing in python, that I borrow from https://gist.github.com/omaraflak/08eed161f5390c27fc8fed136f2ff53d. 
+
+Explanation
+```
+TODO 
+```
+
+
+
 
 ### Observations
 We have some observations:
@@ -82,3 +104,7 @@ Benchmarking results:
   </tbody>
 </table>
 
+
+### Notes
+- Rust uses `nlagebra`, CPP uses `Eigen`
+- 
