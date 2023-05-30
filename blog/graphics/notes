@@ -1,0 +1,53 @@
+
+time in mac is user time // 
+cargo uses multicore 
+
+raytrace
+
+
+cpp 
+----
+size 107K
+comptime 7.55s
+
+1200x800
+runtime 2.90
+
+2400x1600
+runtime 11.56s
+
+rust 
+-----
+size 1.9M
+comptime 1m23s
+
+1200x800
+runtime 1.35s
+
+2400x1600
+runtime 5.46s
+
+BVH
+
+cpp
+---
+comptime 8.04s
+size 111K
+
+600x400
+dragon runtime 7.5s
+
+1200x800
+dragon runtime 21.85s
+
+
+rust 
+-----
+comptime
+size 1.6M
+
+600x400
+dragon runtime 6.11s
+
+1200x800
+dragon runtime 19.76s
