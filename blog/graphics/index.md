@@ -16,7 +16,7 @@ We deal with 3 tasks:
 3. Rasterization on CPU (2 videos)
 
 ### TLDR
-Rust is faster. 
+`Rust` is faster than `C++`
 
 <hr>
 
@@ -33,7 +33,7 @@ This is very intensive computation which is usually CPU bound. It may be paralle
 We render the following image which consists of 7 spheres, 1 plane and 7 lights. Objects are of lambert, specular and reflective materials, which determine their color calculation.
 <img src="imgs/raytracing.png">
 
-Benchmarking results:
+Results:
 <table>
   <thead>
     <tr>
@@ -99,7 +99,7 @@ We render the following dragon which consists 856294 triangles. For this task, w
 
 <img src="imgs/bvh.png">
 
-Benchmarking results:
+Results:
 <table>
   <thead>
     <tr>
@@ -162,7 +162,7 @@ The above dragon is re-rendered much faster!
 
 <!-- <img src="imgs/bvh.png"> -->
 
-Benchmarking results:
+Results:
 <table>
   <thead>
     <tr>
@@ -212,6 +212,7 @@ Benchmarking results:
   </tbody>
 </table>
 
+<hr>
 
 ### Observations
 1. rust is faster!
