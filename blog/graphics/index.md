@@ -15,6 +15,9 @@ We deal with 3 tasks:
 2. Ray Tracing with BVH accelaration (2 objects)
 3. Rasterization on CPU (2 videos)
 
+### TLDR
+Rust is faster. 
+
 <hr>
 
 ### 1> Ray Tracing
@@ -149,18 +152,15 @@ Benchmarking results:
 <hr>
 
 ### 3> Rasterization on CPU
-<img src="imgs/bvh-wiki.png">
+<img src="imgs/raster-wiki.png">
+What is Rasterization? 
 
-What is Bounding Volume Heirarchy (BVH)? 
 ```
-Complex geometries can be represented as a collection of primitive elements like triangles. When the scene has many objects, intersecting a ray with all the objects can be really intensive. It can help to recursively partition the space or the object into heirarchies, and only recursively search the partition the ray intersects. This can help in acheiving a logarithmic computation time. 
-
-BVH is datastructure for acceleration that subdivides the objects (instead of space). We create a Axis-Aligned-Bounding-Box (AABB) for each object and group them together using a bottom-up approach. 
+Ray tracing can be computationally intense. A trick to improve is to project the objects onto the camera plane. In this process we discretize the vector objects into pixels. This task is highly parallelizable, and can leverage GPUs. Rasterization is quite an involved pipeline and consists of Vertex, Geometry, Fragment and Blending Shaders. Each of these shaders are restrictive in what they do and hence are very  efficiently parallelizable. 
 ```
+The above dragon is re-rendered much faster!
 
-We render the following dragon which consists 856294 triangles. For this task, we slightly modify the code and assume assume all lights are visible, ignoring shadow rays. This assumption simplifies this task. (Note: One may need to additionally comment 2 LOC in rust)
-
-<img src="imgs/bvh.png">
+<!-- <img src="imgs/bvh.png"> -->
 
 Benchmarking results:
 <table>
@@ -213,17 +213,6 @@ Benchmarking results:
 </table>
 
 
-
-
-
-
-
-
-
-
-
-
-
 ### Observations
 1. rust is faster!
 1. cpp compiles faster
@@ -233,19 +222,7 @@ Benchmarking results:
 5. How can thin LTO be faster than fat LTO ??
 
 
-
-
-
-
-
-
-
-
-
-### Profiling C++ vs Rust
-- I use xcode Instruments to profile both C++ and Rust code. Rust executables have a ordered way of creating debug symbols and this helps in finding the order of the function call inside another. This is not the case with cpp, which just bundles all function calls to one. 
-- This can be due to recursion of reflected rays, I can try to profile without reflection. 
-
-### Notes
-- Rust uses `nlagebra`, CPP uses `Eigen`
-- 
+### Additional Comments
+- Rust is more pleasant to code in than cpp, because of modern tooling. 
+- I think rust is faster because it enforces a better memory management system and a better zero-cost-abstraction. 
+- Rust uses `nlagebra`, CPP uses `Eigen`. These Eigen files are all header files and therefore could be the reason why there are fewer library files to compile. 
