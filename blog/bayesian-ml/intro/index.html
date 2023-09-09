@@ -90,17 +90,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here are some discussions:</p>
 <ol type="1">
 <li><p>Which model would you choose?</p>
-<ol type="a">
-<li>y = a_0 + a_1 * t</li>
-<li>y = sum from 0 to 3 (a_i * t^i)</li>
-<li>y = sum from 0 to 100 (a_i * t^i)</li>
+<ol type="1">
+<li><span class="math inline">\(y = a_0 + a_1 * t\)</span></li>
+<li><span class="math inline">\(y = a_0 + a_1 * t + a_2 * t^2 + a_3 * t^3\)</span></li>
+<li><span class="math inline">\(y = a_0 + a_1 * t + a_2 * t^2 + a_3 * t^3 + ... + a_{100} * t^{100}\)</span></li>
 </ol>
-<p>Prof chooses c.&nbsp;because it is a larger parameter space. Should explore more.</p></li>
+<p>Prof chooses iii. because it is a larger parameter space, and provides more options</p></li>
 <li><p>Should data size be relevant to size of a model?</p>
-<ol type="a">
-<li>Interesting question. Lots of discussions about this.</li>
-<li>The issue of overfitting is a problem, but it is known that overparametrized models like NNs don’t overfit, and are able to respect our inductive biases</li>
-</ol></li>
+<ul>
+<li>Although overfitting is a problem, but it is known that overparametrized models like NNs don’t overfit</li>
+<li>How to respect our inductive biases</li>
+</ul></li>
 <li><p>The case for epistemic uncertainity modelling.</p>
 <ul>
 <li>It is about modelling and improving our knowledge. More data should reduce uncertainity.</li>
@@ -108,20 +108,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We need a modelling technique to represent our honest beliefs</li>
 <li>Should be able to support a large hypothesis space, infinite parameters, and be able to learn from small data.</li>
 </ul></li>
-<li><p>Marginilaztion vs.&nbsp;Optimization</p>
+<li><p>Bayesian Model Average</p>
 <ul>
-<li>Marginilaztion aka Bayesian Model Average.</li>
+<li>Marginilaztion vs.&nbsp;Optimization</li>
 <li>Instead of using one value for the weights, we use a distribution of weights.</li>
 </ul></li>
 </ol>
 <p>Following are three problems to illustrate probabilistic modelling:</p>
-<p>Study A: Regression - What should be the loss function to minimize? - L2 loss is equivalent to assuming a gaussian error model, that error is normally distributed around the true value. -</p>
 </section>
 <section id="linear-regression" class="level2">
 <h2 class="anchored" data-anchor-id="linear-regression">1. Linear Regression</h2>
-<p>Suppose we have a dataset D = {x_i, y_i} for i = 1, …, N. We fit a model <span class="math inline">\(y = f_w(x) + \epsilon\)</span>, where w are the parameters of the model.</p>
-<p>Then we have the following:, explain these terms.</p>
-<p><span class="math inline">\(p(y(x_0) | x_0, D, \sigma^2) = \int p(y(x_0) | x_0, w, \sigma^2) p(w | D, \sigma^2) dw\)</span></p>
+<p>Suppose we have a dataset <span class="math inline">\(D = \{x_i, y_i\}_N\)</span>. What model do we fit to this, to do accurate predictions later?</p>
+<p><b>Answer:</b></p>
+<p>We can try to fit a simple linear model <span class="math inline">\(y = f_w(x) = w^T x\)</span>, or a M-degree polynomial model <span class="math inline">\(y = f_w(x) = \sum_{i=0}^M w_i x^i\)</span>. To obtain these parameters, we need to define an objective aka. error function, or loss function.</p>
+<p>A simple choice is the Squared Error loss i.e.&nbsp;<span class="math inline">\(L(w) = \sum_{i=1}^N (y_i - f_w(x_i))^2\)</span>. This involves solving for <span class="math inline">\(w^* = argmin_w L(w)\)</span>, using closed form solution or gradient descent.</p>
+<p><b>Bayesian Answer:</b></p>
+<p>We can alternatively formulate this as a probabilistic model, where we assume that the data is generated from a linear model with Gaussian noise. We fit a model <span class="math inline">\(y = f_w(x) + \epsilon\)</span>.</p>
+<p>Then we have the following:</p>
+<p><span class="math inline">\(p(y(x) | D, \sigma^2) = \int p(y(x) | w, \sigma^2) p(w | D, \sigma^2) dw\)</span></p>
 <p>In a frequentist setting, we would have to choose a single value for w, i.e.&nbsp;<span class="math inline">\(p(w | D, \sigma^2)\)</span> is a delta function containing all mass at a single point.</p>
 </section>
 <section id="coin-tossing" class="level2">
@@ -150,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[&lt;matplotlib.lines.Line2D at 0x7fedaa03b640&gt;]</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/index_5_1.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/index_4_1.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">png</figcaption>
 </figure>
 </div>
