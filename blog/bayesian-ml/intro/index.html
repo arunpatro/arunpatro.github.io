@@ -138,18 +138,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The naive way to go from here is the find <span class="math inline">\(\lambda\)</span> that maximizes the likelihood. This is called the maximum likelihood estimate (MLE). We can differentiate this likelihood and set it to zero to find the maximum, which turns out to at <span class="math inline">\(\lambda = \frac{m}{N}\)</span>. We run into the frequentist problems for low data.</p>
 <p>As this model doesn’t seem to be agreeing with our intuition when we have observed very few data points. We need a way to give information about our prior beliefs, and weight of the data points. To make life easy, we can choose the prior to resemble a Binomial function. Let’s choose the Beta distribution <span class="math inline">\(p(\lambda) = \text{Beta}(\lambda | a, b) = \frac{\lambda^{a-1} (1 - \lambda)^{b-1}}{B(a, b)}\)</span>, where <span class="math inline">\(B(a, b)\)</span> is the beta function, a is no. of tails and b is no. of heads.</p>
 <p>Let us plot the beta distribution for various values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot beta distribution</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">7</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (x<span class="op">**</span>(a<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span>(b<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># print(f"{np.sum(y)=}")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fedaa3c2950&gt;]</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (x<span class="op">**</span>(a<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span>(b<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x7fedaa03b640&gt;]</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="01_intro_files/01_intro_5_1.png" class="img-fluid figure-img"></p>
@@ -170,13 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We need to find the posterior <span class="math inline">\(p(u | D)\)</span>, where u is the urn number <span class="math inline">\(u \in \{0..11\}\)</span>. D is the dataset, and since order doesn’t matter, D is just two integers m and N.</p>
 <p>Lets start by modelling the likelihood <span class="math inline">\(p(m, N| u)\)</span>. We can again model this as a binomial distribution, i.e.&nbsp;product of N Bernoulli distributions with <span class="math inline">\(p = \frac{u}{10}\)</span>. Hence, we have <span class="math inline">\(p(m| u, N) = \binom{N}{m} (\frac{u}{10})^m (1 - \frac{u}{10})^{N-m}\)</span>.</p>
 <p>Using Bayes’ rule, we have <span class="math inline">\(p(u | m, N) = \frac{p(m | u, N) p(u)}{p(m | N)}\)</span>, where <span class="math inline">\(p(m | N) = \sum_{u=0}^{10} p(m | u, N) p(u)\)</span> is the marginal likelihood.</p>
-<p>Suppose m = 3 and N = 10</p>
-</section>
-<section id="final-thoughts" class="level2">
-<h2 class="anchored" data-anchor-id="final-thoughts">Final Thoughts</h2>
-<ul>
-<li>Bayesian methods are more principled, and</li>
-</ul>
+<p>Suppose m = 3 and N = 10, we have</p>
 </section>
 </section>
 
