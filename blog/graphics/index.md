@@ -11,9 +11,9 @@ The graphics class at NYU was a great motivation for me to play with compiled la
 
 ### Tasks
 We deal with 3 tasks:
-1. Ray Tracing (3 images)
-2. Ray Tracing with BVH accelaration (2 objects)
-3. Rasterization on CPU (2 videos)
+1. Ray Tracing
+2. Ray Tracing with BVH accelaration
+3. Rasterization on CPU
 
 ### TLDR
 `Rust` is faster than `C++`
