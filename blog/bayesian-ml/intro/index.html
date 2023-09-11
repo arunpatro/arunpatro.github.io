@@ -380,7 +380,7 @@ p(\lambda | D) &amp;\propto \lambda^m (1 - \lambda)^{N-m} \lambda^{a-1} (1 - \la
 <p><img src="index_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>We see that the likelihood is maximum at <span class="math inline">\(u = 3\)</span>. But other urns around 3rd urn also have substantial probability, and are also likely.</p>
+<p>We see that the likelihood is maximum at <span class="math inline">\(u = 3\)</span>. But other urns around 3rd urn also have substantial probability, and are also likely. This answers the second question.</p>
 <div class="cell" data-execution_count="32">
 <details>
 <summary>Code</summary>
@@ -399,61 +399,37 @@ p(\lambda | D) &amp;\propto \lambda^m (1 - \lambda)^{N-m} \lambda^{a-1} (1 - \la
 </div>
 </div>
 <p>If we increase the number of samples, then we see that the likelihood concentrating more around a few values.</p>
-<p>We can apply the bayesian method to obtain the posterior <span class="math inline">\(p(u | D) \propto p(D | u) p(u)\)</span>. As all urns are equally likely, we have a uniform prior <span class="math inline">\(p(u) = \frac{1}{11}\)</span>. The posterior is then simply <span class="math inline">\(p(u | D) \propto p(D | u)\)</span>. We first calculate the exact posterior.</p>
-<div class="cell" data-execution_count="4">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">3</span>, <span class="dv">10</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>prior <span class="op">=</span> np.ones(<span class="dv">11</span>) <span class="op">/</span> <span class="dv">11</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> prior <span class="op">*</span> likelihood</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> posterior <span class="op">/</span> posterior.<span class="bu">sum</span>()</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.bar(u, posterior, label<span class="op">=</span><span class="st">'Posterior'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;BarContainer object of 11 artists&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p>The posterior is identical to the likelihood as prior is uniform.</p>
-<p>We can now obtain the probability of the next ball being black. We marginalize the posterior over all the urns to obtain the probability.</p>
-<p><span class="math display">\[
-\begin{align*}
+<p>We can now obtain the posterior probability of the next ball being black.</p>
+<p>$$ <span class="math display">\[\begin{align*}
 p(\lambda | D) &amp;= \sum_{u=0}^{10} p(\lambda | u) p(u | D) \\
-&amp;= \sum_{u=0}^{10} \frac{u}{10} p(u | D)
-\end{align*}
-\]</span></p>
-<div class="cell" data-execution_count="37">
+&amp;= \sum_{u=0}^{10} \frac{u}{10} p(u | D) \\
+
+
+\end{align*}\]</span> $$</p>
+<p>We can apply the bayesian method to obtain the posterior <span class="math inline">\(p(u | D) \propto p(D | u) p(u)\)</span>. As all urns are equally likely, we have a uniform prior <span class="math inline">\(p(u) = \frac{1}{11}\)</span>. The posterior is then simply <span class="math inline">\(p(u | D) \propto p(D | u)\)</span>. We first calculate the exact posterior of the urns.</p>
+<div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">3</span>, <span class="dv">10</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (x <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m) <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> <span class="fl">11.</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p(m) = </span><span class="sc">{</span>y<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">33</span>, <span class="dv">100</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (x <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m) <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> <span class="fl">11.</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p(m) = </span><span class="sc">{</span>y<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">3</span>, <span class="dv">10</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>prior <span class="op">=</span> np.ones(<span class="dv">11</span>) <span class="op">/</span> <span class="dv">11</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> prior <span class="op">*</span> likelihood</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> posterior <span class="op">/</span> posterior.<span class="bu">sum</span>()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>final_ans <span class="op">=</span> (posterior <span class="op">*</span> u <span class="op">/</span> <span class="dv">10</span>).<span class="bu">sum</span>()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p(lambda | D): </span><span class="sc">{</span>final_ans<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>p(m) = 0.083
-p(m) = 0.009</code></pre>
+<pre><code>p(lambda | D): 0.33</code></pre>
 </div>
 </div>
+<p>If <span class="math inline">\(m = 3\)</span> and <span class="math inline">\(N = 10\)</span>, then we have posterior lambda as 0.33. This is higher than 0.3, because it is likely that we sample from an urn with more black balls than the 4th urn. Therefore, the next ball being black is more likely than 3/10.</p>
 <section id="todo-cleanup" class="level3">
 <h3 class="anchored" data-anchor-id="todo-cleanup">TODO / CLEANUP</h3>
 <ul>
