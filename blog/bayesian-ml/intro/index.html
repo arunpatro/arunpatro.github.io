@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These notes are based on the first lecture on Bayesian ML by Andrew Gordon Wilson, NYU, 2023.</p>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p>This lecture is about motivating the need for Bayesian ML. What does it mean to think in a probabilistic way?</p>
+<p>This lecture is about motivating the need for Bayesian ML. What does it mean to think in a probabilistic way? How do we principally reduce epistemic uncertainity and incorporate our beliefs?</p>
 <p>Here are some discussions:</p>
 <ol type="1">
 <li>Which model would you choose? <span class="math display">\[
@@ -139,7 +139,7 @@ y &amp;= a_0 + a_1 t + a_2 t^2 + a_3 t^3 + \ldots + a_{100} t^{100}
 </div>
 <p>Suppose we have a dataset <span class="math inline">\(D = \{x_i, y_i\}_N\)</span>. What model do we fit to this?</p>
 <p><b>Answer:</b></p>
-<p>We can fit a simple M-degree polynomial model <span class="math inline">\(y = f_w(x) = \sum_{i=0}^M w_i x^i\)</span>. To obtain these parameters, we need to define an objective i.e.&nbsp;loss function to optimize. A simple choice is the Squared Error loss <span class="math inline">\(L(w) = \sum_{i=1}^N (y_i - f_w(x_i))^2\)</span>. This involves solving for <span class="math inline">\(w^* = argmin_w L(w)\)</span> which has a closed form solution <span class="math inline">\(w^* = (X^T X)^{-1} X^T y\)</span>.</p>
+<p>We can fit a simple M-degree polynomial model <span class="math inline">\(y = f_w(x) = \sum_{i=0}^M w_i x^i\)</span>. To obtain these parameters, we need to define an objective i.e.&nbsp;loss function to optimize. A simple choice is the Squared Error loss <span class="math inline">\(L(w) = \textcolor{green}{\sum_{i=1}^N (y_i - f_w(x_i))^2}\)</span>. This involves solving for <span class="math inline">\(w^* = argmin_w L(w)\)</span> which has a closed form solution <span class="math inline">\(w^* = (X^T X)^{-1} X^T y\)</span>.</p>
 <p>One way to regularize this parameter space is to restrict large coefficient values of higher degree polynomial terms. The <span class="math inline">\(L_2\)</span> norm <span class="math inline">\(\sum_{i=1}^M \lambda_i w_i^2\)</span> is an additional loss term. However setting these weights <span class="math inline">\(\lambda_i\)</span> is arbitrary, because higher degree polynomial weights have oscillatory responses, and are not well understood. All this does is contraints weights to be near 0.</p>
 <p><b>Bayesian Answer:</b></p>
 <p>We can alternatively formulate this as a probabilistic model, where we assume that the data is generated from a linear polynomial model with Gaussian noise <span class="math inline">\(y = f_w(x) + \epsilon\)</span>, where <span class="math inline">\(\epsilon \sim \mathcal{N}(0, \sigma^2)\)</span>.</p>
@@ -149,7 +149,7 @@ y &amp;= a_0 + a_1 t + a_2 t^2 + a_3 t^3 + \ldots + a_{100} t^{100}
     \log p(D | w) &amp;= \sum_{i=1}^N \log p(y_i | x_i, w, \sigma^2)
     = \sum_{i=1}^N \log \mathcal{N}(y_i | f_w(x_i), \sigma^2) \\
     &amp;= \sum_{i=1}^N \log \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left( - \frac{(y_i - f_w(x_i))^2}{2 \sigma^2} \right) \\
-    &amp;= -\frac{1}{2\sigma^2} \sum_{i=1}^N (y_i - f_w(x_i))^2 + const
+    &amp;= -\frac{1}{2\sigma^2} \textcolor{green}{\sum_{i=1}^N (y_i - f_w(x_i))^2} + const
 \end{align*}
 \]</span></p>
 <p>Suppose we want to say that the weights are normally distributed, i.e.&nbsp;<span class="math inline">\(w \sim \mathcal{N}(0, \Sigma)\)</span>. Then, we can write the posterior distribution of the weights as <span class="math inline">\(p(w | D, \sigma^2) \propto p(D | w, \sigma^2) p(w)\)</span>. Maximizing the posterior involves maximizing the <span class="math inline">\(log p(w)\)</span> which is equivalent to reducing <span class="math inline">\(w^T w\)</span> to reduce variance of the gaussian prior.</p>
