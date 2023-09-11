@@ -95,74 +95,167 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><span class="math inline">\(y = a_0 + a_1 * t + a_2 * t^2 + a_3 * t^3\)</span></li>
 <li><span class="math inline">\(y = a_0 + a_1 * t + a_2 * t^2 + a_3 * t^3 + ... + a_{100} * t^{100}\)</span></li>
 </ol>
-<p>Prof chooses iii. because it is a larger parameter space, and provides more options. We should aim for an infinite parameter model.</p></li>
+<p>Prof chooses iii. because it is a larger parameter space, and provides more options</p></li>
 <li><p>Should data size be relevant to size of a model?</p>
 <ul>
-<li>Some assumptions and facts, can reduce the complexity of the model and no. of parameters.</li>
 <li>Although overfitting is a problem, but it is known that overparametrized models like NNs don’t overfit</li>
-<li>How to respect our inductive biases?</li>
+<li>Model complexity should depend on the problem and the formalism of our beliefs and inductive biases, not how many observations we have</li>
 </ul></li>
 <li><p>The case for epistemic uncertainity modelling.</p>
 <ul>
-<li>We need a framework to model our knowledge and honest beliefs</li>
-<li>More data should reduce uncertainity in this framework</li>
-<li>A principled way to incorporate our assumptions and inductive biases.</li>
+<li>More data should reduce uncertainity and improve prediction</li>
+<li>More data should not change the model</li>
 </ul></li>
-<li><p>Bayesian Model Average [EXPAND]</p>
+<li><p>Bayesian Model Average</p>
 <ul>
-<li>Marginilaztion vs.&nbsp;Optimization</li>
-<li>Instead of using one value for the weights, we use a distribution of weights.</li>
+<li>It is about Marginilaztion vs.&nbsp;Optimization</li>
+<li>Instead of using one value for the weights, we use a distribution of weights</li>
 </ul></li>
 </ol>
-<p>Following are three problems to build a case for probabilistic thinking:</p>
+<p>Following are three problems to illustrate probabilistic thinking:</p>
 </section>
 <section id="linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="linear-regression">1. Linear Regression</h2>
+<h2 class="anchored" data-anchor-id="linear-regression">01. Linear Regression</h2>
 <p>Suppose we have a dataset <span class="math inline">\(D = \{x_i, y_i\}_N\)</span>. What model do we fit to this, to do accurate predictions later?</p>
 <p><b>Answer:</b></p>
-<p>We can try to fit a simple linear model <span class="math inline">\(y = f_w(x) = w^T x\)</span>, or a M-degree polynomial model <span class="math inline">\(y = f_w(x) = \sum_{i=0}^M w_i x^i\)</span>. To obtain these parameters, we need to define an objective aka. error function, or loss function.</p>
-<p>A simple choice is the Squared Error loss i.e.&nbsp;<span class="math inline">\(L(w) = \sum_{i=1}^N (y_i - f_w(x_i))^2\)</span>. This involves solving for <span class="math inline">\(w^* = argmin_w L(w)\)</span>, using closed form solution or gradient descent.</p>
+<p>We can fit a simple M-degree polynomial model <span class="math inline">\(y = f_w(x) = \sum_{i=0}^M w_i x^i\)</span>. To obtain these parameters, we need to define an objective i.e.&nbsp;loss function to optimize.</p>
+<p>A simple choice is the Squared Error loss i.e.&nbsp;<span class="math inline">\(L(w) = \sum_{i=1}^N (y_i - f_w(x_i))^2\)</span>. This involves solving for <span class="math inline">\(w^* = argmin_w L(w)\)</span> which has a closed form solution <span class="math inline">\(w^* = (X^T X)^{-1} X^T y\)</span>.</p>
+<p>One way to regularize this parameter space is to restrict large values of higher order polynomials usually their L2 norm _{i=1}^M <span class="math inline">\(\lambda w_i^2\)</span> as an additional loss term. However, this is arbitrary. This contraints weights to be near 0, which is an inductive belief.</p>
 <p><b>Bayesian Answer:</b></p>
-<p>We can alternatively formulate this as a probabilistic model, where we assume that the data is generated from a linear model with Gaussian noise. We fit a model <span class="math inline">\(y = f_w(x) + \epsilon\)</span>.</p>
-<p>Then we have the following:</p>
-<p><span class="math inline">\(p(y(x) | D, \sigma^2) = \int p(y(x) | w, \sigma^2) p(w | D, \sigma^2) dw\)</span></p>
-<p>In a frequentist setting, we would have to choose a single value for w, i.e.&nbsp;<span class="math inline">\(p(w | D, \sigma^2)\)</span> is a delta function containing all mass at a single point.</p>
+<p>We can alternatively formulate this as a probabilistic model, where we assume that the data is generated from a linear model with Gaussian noise <span class="math inline">\(y = f_w(x) + \epsilon\)</span>, where <span class="math inline">\(\epsilon \sim \mathcal{N}(0, \sigma^2)\)</span>.</p>
+<p>Then we can write the likelihood of fitting <span class="math inline">\(y\)</span> with a given <span class="math inline">\(w\)</span> as <span class="math inline">\(p(y | x, w, \sigma^2) = \mathcal{N}(y | f_w(x), \sigma^2)\)</span>. The likelihood of the data <span class="math inline">\(p(D|w)\)</span> would be a product of the normals. Maximizing this likeihood is equivalent to minimizing the squared error loss. (Apply log transformation)</p>
+<p>Suppose we want to say that the weights are normally distributed, i.e.&nbsp;<span class="math inline">\(w \sim \mathcal{N}(0, \Sigma)\)</span>. Then, we can write the posterior distribution of the weights as <span class="math inline">\(p(w | D, \sigma^2) \propto p(D | w, \sigma^2) p(w)\)</span>. Maximizing the posterior involves maximizing the <span class="math inline">\(log(p(w))\)</span> == reducing <span class="math inline">\(w^T w\)</span> to reduce variance of the gaussian prior.</p>
+<p>Therefore, maximizing this posterior is equivalent to minimizing the regularized loss function <span class="math inline">\(L(w) + \lambda w^T w\)</span>. This gives bayesian interpretation to regularization.</p>
 </section>
 <section id="coin-tossing" class="level2">
-<h2 class="anchored" data-anchor-id="coin-tossing">2: Coin Tossing</h2>
-<p>Suppose we toss a coin N times and observe m tails. What is the probability that the next toss will be a tail?</p>
+<h2 class="anchored" data-anchor-id="coin-tossing">02: Coin Tossing</h2>
+<p>Suppose we toss a coin <span class="math inline">\(N\)</span> times and observe <span class="math inline">\(m\)</span> tails. What is the probability that the next toss will be a tail?</p>
 <p><b>Answer:</b></p>
-<p>One trivial answer is <span class="math inline">\(\frac{m}{N}\)</span>. This is actually the frequentist estimation, which seems reasonable but inadequate for low m and N. If m = 1 and N = 1, shall we always predict tails?</p>
-<p>Let us try another way that incorporates the Data and our prior beliefs. To solve this in a Bayesian way:</p>
+<p>The probability of getting a tail is its bias <span class="math inline">\(\lambda\)</span>. The trivial answer would be <span class="math inline">\(\frac{m}{N}\)</span>. This is the frequentist estimation, which seems reasonable but inadequate for low m and N. If m = 1 and N = 1, shall we always predict tails?</p>
+<p>Let us try another way that incorporates the data and our prior beliefs. To solve this in a probabilistic way and later bayesian way:</p>
 <p><b>Bayesian Answer:</b></p>
+<p>The probabilistic way is to explore for all ranges of possible values, and determine which parameter values are more likely. It is about estimating distribution of the parameter instead of only the best. The likelihood of the data given a parameter value is $p(D | <span class="math inline">\(\lambda\)</span>)$.</p>
 <p>We ask what is the likelihood and what is the prior?</p>
-<!-- $p(\lambda | D) = \frac{p(D | \lambda) p(\lambda)}{p(D)}$ -->
-<p>Let <span class="math inline">\(\lambda\)</span> be the probability of getting a tail.</p>
-<p>We first try to model the likelihood of the data. <span class="math inline">\(p(D | \lambda) = \prod_{i=1}^N p(x_i | \lambda) = \binom{N}{m}\lambda^m (1 - \lambda)^{N-m}\)</span> This is a binomial distribution, because it is a product of Bernoulli distributions.</p>
-<p>The naive way to go from here is the find <span class="math inline">\(\lambda\)</span> that maximizes the likelihood. This is called the maximum likelihood estimate (MLE). We can differentiate this likelihood and set it to zero to find the maximum, which turns out to at <span class="math inline">\(\lambda = \frac{m}{N}\)</span>. We run into the frequentist problems for low data.</p>
-<p>As this model doesn’t seem to be agreeing with our intuition when we have observed very few data points. We need a way to give information about our prior beliefs, and weight of the data points. To make life easy, we can choose the prior to resemble a Binomial function. Let’s choose the Beta distribution <span class="math inline">\(p(\lambda) = \text{Beta}(\lambda | a, b) = \frac{\lambda^{a-1} (1 - \lambda)^{b-1}}{B(a, b)}\)</span>, where <span class="math inline">\(B(a, b)\)</span> is the beta function, a is no. of tails and b is no. of heads.</p>
-<p>Let us plot the beta distribution for various values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<p>Let <span class="math inline">\(\lambda\)</span> be the bias i.e.&nbsp;probability of getting a tail.</p>
+<p>The likelihood <span class="math inline">\(p(D | \lambda) = \prod_{i=1}^N p(x_i | \lambda) = \binom{N}{m}\lambda^m (1 - \lambda)^{N-m}\)</span> is a binomial distribution, because it is a product of Bernoulli distributions.</p>
+<p>The naive way to go from here is the find <span class="math inline">\(\lambda\)</span> that maximizes the likelihood. This is called the maximum likelihood estimate (MLE). We can differentiate this likelihood and set it to zero to find the maximum, which turns out to at <span class="math inline">\(\lambda = \frac{m}{N}\)</span>. But this point estimate, runs into the same frequentist problem for low data.</p>
+<p>We now explore other possible values of <span class="math inline">\(\lambda\)</span> and its likelihood. Suppose we have N = 10, m = 7:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">7</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (x<span class="op">**</span>(a<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span>(b<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>_bias <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>_likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> _bias<span class="op">**</span>m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> _bias)<span class="op">**</span>(N <span class="op">-</span> m)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.plot(_bias, _likelihood, <span class="st">'o--'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_likelihood[<span class="dv">6</span>] <span class="op">/</span> _likelihood[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0.8057284197667883</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/index_4_1.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">png</figcaption>
 </figure>
 </div>
-<p>This prior quantifies our belive that it is likely for it to be tail than head from the observations (a = tails, b = heads). We observe that the mode is at 7/10 to represent this fact. Play with different values of a and b to see how the distribution changes.</p>
-<p>Now to answer the probability of tails given D observations, we need to compute the posterior <span class="math inline">\(p(\lambda | D)\)</span>. We can do this by using Bayes’ rule:</p>
-<p><span class="math inline">\(p(\lambda | D) = \frac{p(D | \lambda) p(\lambda)}{p(D)}\)</span>, where <span class="math inline">\(p(D) = \int p(D | \lambda) p(\lambda) d\lambda\)</span> is the marginal likelihood.</p>
+<p>Here we observe that bias = <code>0.7</code> has the most likelihood. And <code>0.6</code> is 80% as likely as <code>0.7</code>. We are thinking of assigning every possible value of <span class="math inline">\(\lambda\)</span> a probability. When we have more data, the likelihood will be more peaked around the true value.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">70</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>_bias <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>_likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> _bias<span class="op">**</span>m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> _bias)<span class="op">**</span>(N <span class="op">-</span> m)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.plot(_bias, _likelihood, <span class="st">'go--'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_likelihood[<span class="dv">6</span>] <span class="op">/</span> _likelihood[<span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0.11531527103794582</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/index_6_1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">png</figcaption>
+</figure>
+</div>
+<p>We now see that <code>0.6</code> is now 11% as likely as <code>0.7</code>. We are more less confident about this choice now compared to our best choice.</p>
+<p>How can we introduce some prior belief, say yesterday we have tossed 1000 coins and observed 301 tails? We should be really sure that the bias is 0.3 instead of the now 0.7. Using the bayesian philosophy, we modify the likelihood to include the prior belief.</p>
+<p><span class="math display">\[posterior \propto likelihood * prior\]</span> <span class="math display">\[p(\lambda | D) \propto p(D | \lambda) p(\lambda)\]</span></p>
+<p>To make life easy, we can choose the prior to resemble the likelihood (Binomial). The Beta distribution <span class="math inline">\(p(\lambda) = \text{Beta}(\lambda | a, b) = \frac{\lambda^{a-1} (1 - \lambda)^{b-1}}{B(a, b)}\)</span>, where <span class="math inline">\(B(a, b)\)</span> is the beta function, a is no. of tails and b is no. of heads. Only note the shape of the beta distribution as we are ignoring the constant term.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>a1, b1 <span class="op">=</span> <span class="dv">20</span>, <span class="dv">80</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>a2, b2 <span class="op">=</span> <span class="dv">301</span>, <span class="dv">699</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> (x<span class="op">**</span>(a1<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span>(b1<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> (x<span class="op">**</span>(a2<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>x)<span class="op">**</span>(b2<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax1.plot(x, y1, <span class="st">'r.-'</span>, label<span class="op">=</span><span class="st">'a=30, b=70'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax2.plot(x, y2, <span class="st">'b.-'</span>, label<span class="op">=</span><span class="st">'a=201, b=799'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax1.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ax2.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/index_9_0.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">png</figcaption>
+</figure>
+</div>
+<p>The posterior is now <span class="math inline">\(p(\lambda | D) \propto \lambda^m (1 - \lambda)^{N-m} \lambda^{a-1} (1 - \lambda)^{b-1} = \lambda^{m+a-1} (1 - \lambda)^{N-m+b-1}\)</span>. This is a Beta distribution with parameters <span class="math inline">\(Beta(m+a, N-m+b)\)</span>. Since the posterior and prior both are Beta distributions, it is easy to visualize how the prior changes. Through the moments we can see that the frequentist estimate arises out of N going to infinity, with low variance/uncertainity.</p>
+<p><span class="math display">\[\mathbb{E}[\lambda] = \frac{m + a}{N + a + b}\]</span> <span class="math display">\[\mathbb{V}[\lambda] = \frac{(m + a)(N - m + b)}{(N + a + b)^2 (N + a + b + 1)}\]</span> <span class="math display">\[\lim_{N \to \infty} \mathbb{E}[\lambda] = \frac{m}{N}\]</span> <span class="math display">\[\lim_{N \to \infty} \mathbb{V}[\lambda] = 0\]</span></p>
+<p>Applying these priors to the likelihood for observations (N = 10, m=7) we notice how the posterior changes, and how the blue prior is stronger than the red prior. The red posterior is significantly different from the red prior. The red posterior has shifted towards the mean of the observations (likelihood). The blue posterior is not that affected from the observations because of a stronger prior.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>_bias <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">101</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># observations</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># priors</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>_a1, _b1 <span class="op">=</span> <span class="dv">10</span>, <span class="dv">40</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>_a2, _b2 <span class="op">=</span> <span class="dv">301</span>, <span class="dv">699</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>_prior1 <span class="op">=</span> (_bias<span class="op">**</span>(_a1<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>_bias)<span class="op">**</span>(_b1<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>_prior2 <span class="op">=</span> (_bias<span class="op">**</span>(_a2<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>_bias)<span class="op">**</span>(_b2<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># posteriors</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>_post1 <span class="op">=</span> (_bias<span class="op">**</span>(m<span class="op">+</span>_a1<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>_bias)<span class="op">**</span>(N<span class="op">-</span>m<span class="op">+</span>_b1<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>_post2 <span class="op">=</span> (_bias<span class="op">**</span>(m<span class="op">+</span>_a2<span class="op">-</span><span class="dv">1</span>)) <span class="op">*</span> ((<span class="dv">1</span><span class="op">-</span>_bias)<span class="op">**</span>(N<span class="op">-</span>m<span class="op">+</span>_b2<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>ax1.plot(_bias, _prior1, <span class="st">'r.--'</span>, label<span class="op">=</span><span class="st">'Prior a=10, b=40 (Set 1)'</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Bias'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>ax1.set_yticks([])  <span class="co"># Remove y-axis ticks</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>ax2.plot(_bias, _prior2, <span class="st">'b.-'</span>, label<span class="op">=</span><span class="st">'Prior a=301, b=699 (Set 2)'</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>ax2.set_yticks([])  <span class="co"># Remove y-axis ticks</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>ax3.plot(_bias, _post1, <span class="st">'r.-'</span>, label<span class="op">=</span><span class="st">'Posterior a=10, b=40 (Set 1)'</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>ax3.set_yticks([])  <span class="co"># Remove y-axis ticks</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>ax4 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>ax4.plot(_bias, _post2, <span class="st">'b.-'</span>, label<span class="op">=</span><span class="st">'Posterior a=301, b=699 (Set 2)'</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>ax4.set_yticks([])  <span class="co"># Remove y-axis ticks</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/index_11_0.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">png</figcaption>
+</figure>
+</div>
+<p>Since this distribution is known analytically, it is easy to compute the posterior at any point. However, if the prior is modelled differently then it would be difficult to analytically compute the posterior. We must enumerate through all the values of the prior to calculate the denominator.</p>
 </section>
 <section id="urn-problem" class="level2">
-<h2 class="anchored" data-anchor-id="urn-problem">3. Urn Problem</h2>
+<h2 class="anchored" data-anchor-id="urn-problem">03. Urn Problem</h2>
 <p>There are 11 urns with 10 balls each. The i-th urn has i black balls. At every turn, we pick an urn at random and draw a ball with replacement. Suppose we observe m black balls after N turns. We can now ask: 1. What is the probability that the next ball is black? 2. What is the probability that the next ball is from the i-th urn?</p>
 <p><b>Answer:</b></p>
 <p>The trivial way to answer these questions partly would be: 1. Probability of the next ball being black is <span class="math inline">\(\frac{m}{N}\)</span>. 2. Let us say m = 3 and N = 10. Then we can say that its most likely we are picking from the 4th urn, because 4th urn has p(m) = 3 / 10. But can’t trivially assign a probability to this 4th urn.</p>
