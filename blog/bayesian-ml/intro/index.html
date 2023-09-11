@@ -399,6 +399,7 @@ p(\lambda | D) &amp;\propto \lambda^m (1 - \lambda)^{N-m} \lambda^{a-1} (1 - \la
 </div>
 </div>
 <p>If we increase the number of samples, then we see that the likelihood concentrating more around a few values.</p>
+<p>Using Bayes’ rule we can calculate the posterior <span class="math inline">\(p(u | D) = \frac{p(D | u) p(u)}{\sum_{u=0}^{10} p(D | u) p(u)}\)</span>. As all urns are equally likely, we have a uniform prior <span class="math inline">\(p(u) = \frac{1}{11}\)</span>.</p>
 <p>We can now obtain the posterior probability of the next ball being black.</p>
 <p>$$ <span class="math display">\[\begin{align*}
 p(\lambda | D) &amp;= \sum_{u=0}^{10} p(\lambda | u) p(u | D) \\
@@ -406,7 +407,6 @@ p(\lambda | D) &amp;= \sum_{u=0}^{10} p(\lambda | u) p(u | D) \\
 
 
 \end{align*}\]</span> $$</p>
-<p>We can apply the bayesian method to obtain the posterior <span class="math inline">\(p(u | D) \propto p(D | u) p(u)\)</span>. As all urns are equally likely, we have a uniform prior <span class="math inline">\(p(u) = \frac{1}{11}\)</span>. The posterior is then simply <span class="math inline">\(p(u | D) \propto p(D | u)\)</span>. We first calculate the exact posterior of the urns.</p>
 <div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
@@ -436,7 +436,7 @@ p(\lambda | D) &amp;= \sum_{u=0}^{10} p(\lambda | u) p(u | D) \\
 <li>code for marginalizing the gaussian prior.</li>
 <li>maybe section header should be somewhere</li>
 <li>better plotting, maybe merge plots, remove axes, wherever possible</li>
-<li>urn, is it p(m, N) or p(m | N) ?</li>
+<li>some animations for sweeping params?</li>
 </ul>
 </section>
 </section>
