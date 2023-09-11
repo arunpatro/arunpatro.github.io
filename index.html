@@ -1,151 +1,163 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+    <link rel="stylesheet" href="css/my_styles.css">
     <title>Arun's Homepage</title>
 </head>
 
 <body>
-    <h1>Hello World!</h1>
-    <img style="border-radius: 50%; padding: 20" width="256" src="imgs/arun-4.jpeg">
-    <p class="lead">I'm Arun</p>
-    <p class="lead ">I am studying <a class="link-yellow " href="https://cs.nyu.edu/home/index.html ">Computer
-            Science</a> at <a class="link-purple" href="https://cims.nyu.edu/dynamic/ ">Courant, New York
-            University</a>.</p>
-    <p>You can reach me at <a class="link-blue " href="mailto:arun.kumar.patro@gmail.com ">[email]</a> and
-        follow me on <a class="link-blue " href="https://twitter.com/arunpatro ">[twitter]</a> and <a class="link-blue "
-            href="https://github.com/arunpatro ">[github]</a>
-    <p><a class="link-green" href="pdfs/arunpatro_resume.pdf " role="button ">[ Here's my resume ]</a></p>
-    </div>
-    <div class="row ">
-        <div class="col-lg-12 ">
-            <hr>
-            <br>
-            <h6>I was a Data Scientist with Meesho and Myntra in the past, working on Image Sciences and Supply
-                Chain problems.</h6>
-            <br>
-        </div>
-        <div class="col-lg-6 ">
-            <h4><a class="link-red " href="https://meesho.com">Meesho</a></h4>
-            <h6 style="color: gray ">Bangalore and Hyderabad | 2021 - 2022</h6>
-            <p style="text-align: justify; ">I created ~250+ computer vision models for predicting attributes
-                like color, neck, pattern for 35+ product categories. This saved ~30% of tagging costs while
-                handling ~10M new products per month. I also built a continual learning framework with
-                humans-in-the-loop on top of this to address the life-long nature of this problem. My primary
-                tech stack was using PyTorch, PyTorch Lightning, nbdev, PySpark and AWS EMR.</p>
-            <!-- <p><a class="btn btn-primary " href="pdfs/fashion-gans.pdf " role="button ">View PPT</a></p> -->
-        </div>
-        <div class="col-lg-6 ">
-            <h4><a class="link-red " href="https://myntra.com">Myntra</a></h4>
-            <h6 style="color: gray ">Bangalore | 2018 - 2020</h6>
-            <p style="text-align: justify; ">I worked on many image science and supply chain problems like
-                generative modelling of fashion articles, style transfer, fashion style classification, style
-                grading, warehouse logistics optimization, etc. My primary tech stack was PyTorch, Python-MIP,
-                Tensorflow-Probability, Flask and Azure Cloud.<br> <br>
-            </p>
-            <!-- <p><a class="btn btn-primary " href="pdfs/bke-report.pdf " role="button ">View Dissertation</a> <a
+    <div class="container">
+        <main role="main">
+            <!-- Jumbotron -->
+            <div class="jumbotron" style="background-color: #FFFFFF">
+                <h1>Hello World!</h1>
+                <img style="border-radius: 50%; padding: 20" width="256" src="imgs/arun-4.jpeg">
+                <p class="lead">I'm Arun</p>
+                <p class="lead ">I am studying <a class="link-yellow "
+                        href="https://cs.nyu.edu/home/index.html ">Computer Science</a> at <a class="link-purple"
+                        href="https://cims.nyu.edu/dynamic/ ">Courant, New York University</a>.</p>
+                <p>You can reach me at <a class="link-blue " href="mailto:arun.kumar.patro@gmail.com ">[email]</a> and
+                    follow me on <a class="link-blue " href="https://twitter.com/arunpatro ">[twitter]</a> and <a
+                        class="link-blue " href="https://github.com/arunpatro ">[github]</a>
+                <p><a class="link-green" href="pdfs/arunpatro_resume.pdf " role="button ">[ Here's my resume ]</a></p>
+            </div>
+            <!-- <div class="row ">
+                <div class="col-lg-12 ">
+                    <hr>
+                    <br>
+                    <h6>I was a Data Scientist with Meesho and Myntra in the past, working on Image Sciences and Supply
+                        Chain problems.</h6>
+                    <br>
+                </div>
+                <div class="col-lg-6 ">
+                    <h4><a class="link-red " href="https://meesho.com">Meesho</a></h4>
+                    <h6 style="color: gray ">Bangalore and Hyderabad | 2021 - 2022</h6>
+                    <p style="text-align: justify; ">I created ~250+ computer vision models for predicting attributes
+                        like color, neck, pattern for 35+ product categories. This saved ~30% of tagging costs while
+                        handling ~10M new products per month. I also built a continual learning framework with
+                        humans-in-the-loop on top of this to address the life-long nature of this problem. My primary
+                        tech stack was using PyTorch, PyTorch Lightning, nbdev, PySpark and AWS EMR.</p>
+                    <!-- <p><a class="btn btn-primary " href="pdfs/fashion-gans.pdf " role="button ">View PPT</a></p> -->
+                </div>
+                <div class="col-lg-6 ">
+                    <h4><a class="link-red " href="https://myntra.com">Myntra</a></h4>
+                    <h6 style="color: gray ">Bangalore | 2018 - 2020</h6>
+                    <p style="text-align: justify; ">I worked on many image science and supply chain problems like
+                        generative modelling of fashion articles, style transfer, fashion style classification, style
+                        grading, warehouse logistics optimization, etc. My primary tech stack was PyTorch, Python-MIP,
+                        Tensorflow-Probability, Flask and Azure Cloud.<br> <br>
+                    </p>
+                    <!-- <p><a class="btn btn-primary " href="pdfs/bke-report.pdf " role="button ">View Dissertation</a> <a
                             class="btn btn-primary " href="pdfs/bke.pdf " role="button ">View PPT</a> <a
                             class="btn btn-social-icon btn-github "
                             href="https://github.com/arunpatro/blur-kernel-estimation " rel="nofollow "><span
                                 class="fa fa-github "></span></a></p> -->
-        </div>
-        <div class="col-lg-12 ">
-            <hr>
-            <br>
-            <h6>I like to share some insights into things I waste time on:</h6>
-            <br>
-        </div>
-        <div class="col-lg-6 ">
-            <h4>An intuitive guide to solving a Rubik's cube using only 1 algorithm</h4>
-            <p style="text-align: justify; ">Solving a Rubik's cube isn't hard. Attempting it might be daunting.
-                Here, I explore a particular visualization of the cube solving process called the Old Pochman
-                method. This method is very intuitive to the understand the flow of chaos
-                to order. I go on to show that Old Pochman can be done in only 1 algorithm.</p>
-            <p><a class="btn btn-primary " href="/blog/rubiks " role="button ">/blog/rubiks</a></p>
-        </div>
-        <div class="col-lg-6 ">
-            <h4>Thoughts on building a theoretical Clash Royale AI</h4>
-            <p style="text-align: justify; ">Clash Royale is 21st century chess. Its is a card game played on
-                Phones. Here, I talk about how to model it as a computational problem. Every Game can be solved
-                using an AI if modelled correctly. Games may be solved using Reinforcement
-                Learning. I talk about what a Clash Royale AI should be able to achieve in the process of
-                solving the game. </p>
-            <p><a class="btn btn-primary " href="/blog/crai " role="button ">/blog/crai</a></p>
-        </div>
-        <br>
-        <div class="col-lg-12 ">
-            <hr>
-            <br>
-            <h6>I have done some year long collegiate projects in deep learning:</h6>
-            <br>
-        </div>
-        <div class="col-lg-6 ">
-            <!-- <h4>Master's Thesis</h4> -->
-            <h4>Automated Fashion Generation using GANs</h4>
-            <h6 style="color: gray ">With Vishnu Makkapati and Prof. Jayanta Mukhopadhayay</h6>
-            <p style="text-align: justify; ">Here we model DCGANs to improve quality of images for periodic data
-                (stripes, checks, etc) of fashion images. We have experimented with different GAN architectures
-                and modified datasets for texture synthesis and analysis. We worked
-                on inverting the GANs to understand data distribution in latent space, and create mix-and-match
-                designs.</p>
-            <p><a class="btn btn-primary " href="pdfs/fashion-gans.pdf " role="button ">View PPT</a></p>
-        </div>
-        <div class="col-lg-6 ">
-            <!-- <h4>Bachelor's Thesis</h4> -->
-            <h4>Blur Kernel Estimation</h4>
-            <h6 style="color: gray ">With Prof. Rajiv Ranjan Sahay</h6>
-            <p style="text-align: justify; ">Here we estimated the guassian blur kernels to quantify the degree
-                of defocus blur of non-uniformly blurred images. Estimation was done patchwise. Trained a
-                Convolutional Neural Networls to learn the blur parameter (sigma) of a gaussian
-                blur from patches obtained from invariantly blurred textured images (Brodatz Dataset). <br> <br>
-            </p>
-            <p><a class="btn btn-primary " href="pdfs/bke-report.pdf " role="button ">View Dissertation</a> <a
-                    class="btn btn-primary " href="pdfs/bke.pdf " role="button ">View PPT</a> <a
-                    class="btn btn-social-icon btn-github " href="https://github.com/arunpatro/blur-kernel-estimation "
-                    rel="nofollow "><span class="fa fa-github "></span></a></p>
-        </div>
-        <div class="col-lg-12 ">
-            <hr>
-            <br>
-            <h6>My work has been peer reviewed at:</h6>
-            <br>
-            <ol>
-                <li>
-                    <div style="padding: 5; text-align: justify; "> Girish Sathyanarayana, & Arun Patro. (2020).
-                        Intelligent Warehouse Allocator for Optimal Regional Utilization.
-                        <a class="link-blue" href="pdfs/kdd-2020.pdf ">[pdf]</a> <a class="link-blue"
-                            href="https://arxiv.org/abs/2007.05081 ">[link]</a>
-                    </div>
-                </li>
-                <li>
-                    <div style="padding: 5; text-align: justify; "> Banerjee R.H., Rajagopal A., Jha N., Patro
-                        A., Rajan A. (2019) Let AI Clothe You: Diversified Fashion Generation. In: Carneiro G.,
-                        You S. (eds) Computer Vision – ACCV 2018 Workshops. ACCV 2018. Lecture Notes in Computer
-                        Science,
-                        vol 11367. Springer, Cham <a class="link-blue" href="pdfs/accv-2018.pdf ">[pdf]</a> <a
-                            class="link-blue"
-                            href="https://link.springer.com/chapter/10.1007/978-3-030-21074-8_7 ">[link]</a>
-                    </div>
-                </li>
-                <li>
-                    <div style="padding: 5; text-align: justify; "> A. Patro, V. Makkapati and J. Mukhopadhyay,
-                        "Evaluation of Loss Functions for Estimation of Latent Vectors from GAN, " 2018 IEEE
-                        28th International Workshop on Machine Learning for Signal Processing (MLSP), Aalborg,
-                        2018, pp.
-                        1-6. <a class="link-blue" href="pdfs/mlsp-2018.pdf ">[pdf]</a> <a class="link-blue"
-                            href="https://ieeexplore.ieee.org/abstract/document/8517097 ">[link]</a></div>
-                </li>
-                <li>
-                    <div style="padding: 5; text-align: justify; "> Makkapati V., Patro A. (2017) Enhancing
-                        Symmetry in GAN Generated Fashion Images. In: Bramer M., Petridis M. (eds) Artificial
-                        Intelligence XXXIV. SGAI 2017. Lecture Notes in Computer Science, vol 10630. Springer,
-                        Cham
-                        <a class="link-blue" href="pdfs/ai-2017.pdf ">[pdf]</a> <a class="link-blue"
-                            href="https://link.springer.com/chapter/10.1007/978-3-319-71078-5_34 ">[link]</a>
-                    </div>
+                </div>
+                <div class="col-lg-12 ">
+                    <hr>
                     <br>
-                </li>
-            </ol>
-        </div>
+                    <h6>I like to share some insights into things I waste time on:</h6>
+                    <br>
+                </div>
+                <div class="col-lg-6 ">
+                    <h4>An intuitive guide to solving a Rubik's cube using only 1 algorithm</h4>
+                    <p style="text-align: justify; ">Solving a Rubik's cube isn't hard. Attempting it might be daunting.
+                        Here, I explore a particular visualization of the cube solving process called the Old Pochman
+                        method. This method is very intuitive to the understand the flow of chaos
+                        to order. I go on to show that Old Pochman can be done in only 1 algorithm.</p>
+                    <p><a class="btn btn-primary " href="/blog/rubiks " role="button ">/blog/rubiks</a></p>
+                </div>
+                <div class="col-lg-6 ">
+                    <h4>Thoughts on building a theoretical Clash Royale AI</h4>
+                    <p style="text-align: justify; ">Clash Royale is 21st century chess. Its is a card game played on
+                        Phones. Here, I talk about how to model it as a computational problem. Every Game can be solved
+                        using an AI if modelled correctly. Games may be solved using Reinforcement
+                        Learning. I talk about what a Clash Royale AI should be able to achieve in the process of
+                        solving the game. </p>
+                    <p><a class="btn btn-primary " href="/blog/crai " role="button ">/blog/crai</a></p>
+                </div>
+                <br>
+                <div class="col-lg-12 ">
+                    <hr>
+                    <br>
+                    <h6>I have done some year long collegiate projects in deep learning:</h6>
+                    <br>
+                </div>
+                <div class="col-lg-6 ">
+                    <!-- <h4>Master's Thesis</h4> -->
+                    <h4>Automated Fashion Generation using GANs</h4>
+                    <h6 style="color: gray ">With Vishnu Makkapati and Prof. Jayanta Mukhopadhayay</h6>
+                    <p style="text-align: justify; ">Here we model DCGANs to improve quality of images for periodic data
+                        (stripes, checks, etc) of fashion images. We have experimented with different GAN architectures
+                        and modified datasets for texture synthesis and analysis. We worked
+                        on inverting the GANs to understand data distribution in latent space, and create mix-and-match
+                        designs.</p>
+                    <p><a class="btn btn-primary " href="pdfs/fashion-gans.pdf " role="button ">View PPT</a></p>
+                </div>
+                <div class="col-lg-6 ">
+                    <!-- <h4>Bachelor's Thesis</h4> -->
+                    <h4>Blur Kernel Estimation</h4>
+                    <h6 style="color: gray ">With Prof. Rajiv Ranjan Sahay</h6>
+                    <p style="text-align: justify; ">Here we estimated the guassian blur kernels to quantify the degree
+                        of defocus blur of non-uniformly blurred images. Estimation was done patchwise. Trained a
+                        Convolutional Neural Networls to learn the blur parameter (sigma) of a gaussian
+                        blur from patches obtained from invariantly blurred textured images (Brodatz Dataset). <br> <br>
+                    </p>
+                    <p><a class="btn btn-primary " href="pdfs/bke-report.pdf " role="button ">View Dissertation</a> <a
+                            class="btn btn-primary " href="pdfs/bke.pdf " role="button ">View PPT</a> <a
+                            class="btn btn-social-icon btn-github "
+                            href="https://github.com/arunpatro/blur-kernel-estimation " rel="nofollow "><span
+                                class="fa fa-github "></span></a></p>
+                </div>
+                <div class="col-lg-12 ">
+                    <hr>
+                    <br>
+                    <h6>My work has been peer reviewed at:</h6>
+                    <br>
+                    <ol>
+                        <li>
+                            <div style="padding: 5; text-align: justify; "> Girish Sathyanarayana, & Arun Patro. (2020).
+                                Intelligent Warehouse Allocator for Optimal Regional Utilization.
+                                <a class="link-blue" href="pdfs/kdd-2020.pdf ">[pdf]</a> <a class="link-blue"
+                                    href="https://arxiv.org/abs/2007.05081 ">[link]</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="padding: 5; text-align: justify; "> Banerjee R.H., Rajagopal A., Jha N., Patro
+                                A., Rajan A. (2019) Let AI Clothe You: Diversified Fashion Generation. In: Carneiro G.,
+                                You S. (eds) Computer Vision – ACCV 2018 Workshops. ACCV 2018. Lecture Notes in Computer
+                                Science,
+                                vol 11367. Springer, Cham <a class="link-blue" href="pdfs/accv-2018.pdf ">[pdf]</a> <a
+                                    class="link-blue"
+                                    href="https://link.springer.com/chapter/10.1007/978-3-030-21074-8_7 ">[link]</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="padding: 5; text-align: justify; "> A. Patro, V. Makkapati and J. Mukhopadhyay,
+                                "Evaluation of Loss Functions for Estimation of Latent Vectors from GAN, " 2018 IEEE
+                                28th International Workshop on Machine Learning for Signal Processing (MLSP), Aalborg,
+                                2018, pp.
+                                1-6. <a class="link-blue" href="pdfs/mlsp-2018.pdf ">[pdf]</a> <a class="link-blue"
+                                    href="https://ieeexplore.ieee.org/abstract/document/8517097 ">[link]</a></div>
+                        </li>
+                        <li>
+                            <div style="padding: 5; text-align: justify; "> Makkapati V., Patro A. (2017) Enhancing
+                                Symmetry in GAN Generated Fashion Images. In: Bramer M., Petridis M. (eds) Artificial
+                                Intelligence XXXIV. SGAI 2017. Lecture Notes in Computer Science, vol 10630. Springer,
+                                Cham
+                                <a class="link-blue" href="pdfs/ai-2017.pdf ">[pdf]</a> <a class="link-blue"
+                                    href="https://link.springer.com/chapter/10.1007/978-3-319-71078-5_34 ">[link]</a>
+                            </div>
+                            <br>
+                        </li>
+                    </ol>
+                </div>
+            </div> -->
+        </main>
     </div>
 </body>
 
