@@ -97,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>These notes are based on the first lecture on Bayesian ML by Andrew Gordon Wilson, NYU, 2023.</p>
+<p>See <a href="https://www.youtube.com/watch?v=E1qhGw8QxqY">ICML 2020 Tutorial</a></p>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <p>This lecture is about motivating the need for Bayesian ML. What does it mean to think in a probabilistic way? How do we principally reduce epistemic uncertainity and incorporate our beliefs?</p>
@@ -360,6 +361,10 @@ p(\lambda | D) &amp;\propto \lambda^m (1 - \lambda)^{N-m} \lambda^{a-1} (1 - \la
 </ol>
 <p>But we can see that this is not a very good or complete answer. To obtain the probabilities for each urn, we need a probabilistic approach.</p>
 <p><b>Bayesian Answer:</b></p>
+<ol type="1">
+<li>Let <span class="math inline">\(\lambda\)</span> be probability of getting a black ball. Then we need to find <span class="math inline">\(p(\lambda | D)\)</span>, the posterior.</li>
+<li>Thi is equivalent to asking <span class="math inline">\(p(u | D)\)</span>. <span style="color: red;">or is it <span class="math inline">\(p(u | D, \lambda)\)</span>?</span></li>
+</ol>
 <p>We need to find the posterior <span class="math inline">\(p(u | D)\)</span>, where <span class="math inline">\(u\)</span> is the urn number <span class="math inline">\(u \in \{0 \ldots 11\}\)</span>. Since order doesn’t matter, <span class="math inline">\(D\)</span> is just two integers <span class="math inline">\(m\)</span> and <span class="math inline">\(N\)</span>.</p>
 <p>Lets start by modelling the likelihood <span class="math inline">\(p(m, N| u)\)</span>. We can again model this as a binomial distribution where <span class="math inline">\(p(\lambda | u) = \frac{u}{10}\)</span>. Hence, we have <span class="math inline">\(p(m, N| u) = \binom{N}{m} (\frac{u}{10})^m (1 - \frac{u}{10})^{N-m}\)</span>.</p>
 <p>Suppose <span class="math inline">\(m = 3\)</span> and <span class="math inline">\(N = 10\)</span>, we have the likelihood as a function of <span class="math inline">\(u\)</span> as:</p>
@@ -400,14 +405,14 @@ p(\lambda | D) &amp;\propto \lambda^m (1 - \lambda)^{N-m} \lambda^{a-1} (1 - \la
 </div>
 <p>If we increase the number of samples, then we see that the likelihood concentrating more around a few values.</p>
 <p>Using Bayes’ rule we can calculate the posterior <span class="math inline">\(p(u | D) = \frac{p(D | u) p(u)}{\sum_{u=0}^{10} p(D | u) p(u)}\)</span>. As all urns are equally likely, we have a uniform prior <span class="math inline">\(p(u) = \frac{1}{11}\)</span>.</p>
-<p>We can now obtain the posterior probability of the next ball being black.</p>
-<p>$$ <span class="math display">\[\begin{align*}
+<p>And now using the notion of Bayesian Model Average, we can now obtain the posterior probability of the next ball being black, by marginilizing over all the urns.</p>
+<p><span class="math display">\[
+\begin{align*}
 p(\lambda | D) &amp;= \sum_{u=0}^{10} p(\lambda | u) p(u | D) \\
-&amp;= \sum_{u=0}^{10} \frac{u}{10} p(u | D) \\
-
-
-\end{align*}\]</span> $$</p>
-<div class="cell" data-execution_count="22">
+&amp;= \sum_{u=0}^{10} \frac{u}{10} p(u | D)
+\end{align*}
+\]</span></p>
+<div class="cell" data-execution_count="25">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -415,22 +420,33 @@ p(\lambda | D) &amp;= \sum_{u=0}^{10} p(\lambda | u) p(u | D) \\
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">8</span>, <span class="dv">10</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>prior <span class="op">=</span> np.ones(<span class="dv">11</span>) <span class="op">/</span> <span class="dv">11</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> prior <span class="op">*</span> likelihood</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> posterior <span class="op">/</span> posterior.<span class="bu">sum</span>()</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>final_ans <span class="op">=</span> (posterior <span class="op">*</span> u <span class="op">/</span> <span class="dv">10</span>).<span class="bu">sum</span>()</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"p(lambda | D): </span><span class="sc">{</span>final_ans<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">11</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>prior <span class="op">=</span> np.ones(<span class="dv">11</span>) <span class="op">/</span> <span class="dv">11</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">3</span>, <span class="dv">10</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> prior <span class="op">*</span> likelihood</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> posterior <span class="op">/</span> posterior.<span class="bu">sum</span>()</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>final_ans <span class="op">=</span> (posterior <span class="op">*</span> u <span class="op">/</span> <span class="dv">10</span>).<span class="bu">sum</span>()</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>m<span class="op">=</span><span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>N<span class="op">=</span><span class="sc">}</span><span class="ss"> p(lambda | D): </span><span class="sc">{</span>final_ans<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">## again with different data</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>m, N <span class="op">=</span> <span class="dv">8</span>, <span class="dv">10</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>likelihood <span class="op">=</span> math.comb(N, m) <span class="op">*</span> (u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> u <span class="op">/</span> <span class="dv">10</span>) <span class="op">**</span> (N <span class="op">-</span> m)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> prior <span class="op">*</span> likelihood</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> posterior <span class="op">/</span> posterior.<span class="bu">sum</span>()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>final_ans <span class="op">=</span> (posterior <span class="op">*</span> u <span class="op">/</span> <span class="dv">10</span>).<span class="bu">sum</span>()</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>m<span class="op">=</span><span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>N<span class="op">=</span><span class="sc">}</span><span class="ss"> p(lambda | D): </span><span class="sc">{</span>final_ans<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>p(lambda | D): 0.75</code></pre>
+<pre><code>m=3 N=10 p(lambda | D): 0.33
+m=8 N=10 p(lambda | D): 0.75</code></pre>
 </div>
 </div>
 <p>If <span class="math inline">\(m = 3\)</span> and <span class="math inline">\(N = 10\)</span>, then we have posterior <span class="math inline">\(p(\lambda | D) = 0.33\)</span>, higher than 0.3. This is because there is some chance that we sample from an urn with more black balls than the 4th urn.</p>
-<p>However for <span class="math inline">\(m = 8\)</span> and <span class="math inline">\(N = 10\)</span>, we have posterior <span class="math inline">\(p(\lambda | D) = 0.75\)</span>, lower than 0.8. This is because there are a lot of urns with less black balls than the 8th urn.</p>
+<p>However for <span class="math inline">\(m = 8\)</span> and <span class="math inline">\(N = 10\)</span>, we have posterior <span class="math inline">\(p(\lambda | D) = 0.75\)</span>, lower than 0.8. This is because there are a lot of equilikely urns with less black balls than the 8th urn.</p>
 <section id="todo-cleanup" class="level3">
 <h3 class="anchored" data-anchor-id="todo-cleanup">TODO / CLEANUP</h3>
 <ul>
