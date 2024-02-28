@@ -12,33 +12,44 @@
 <body>
     <div class="container">
         <main role="main">
-            <div class="jumbotron" style="background-color: #FFFFFF">
-                <h1>Hello World!</h1>
-                <img style="border-radius: 50%; padding: 20" width="256" src="imgs/arun-4.jpeg">
-                <p class="lead">I'm Arun</p>
-                <p class="lead ">I am studying <a class="link-green "
+            <div class="row">
+                <div class="col-lg-10">
+                <div class="jumbotron" style="background-color: #FFFFFF">
+                    <h1>Hello World!</h1>
+                    <img style="border-radius: 50%; padding: 20" width="256" src="imgs/arun-4.jpeg">
+                    <p class="lead">I'm Arun</p>
+                    <p class="lead ">I am studying <a class="link-green "
                         href="https://cs.nyu.edu/home/index.html ">Computer Science</a> at <a class="link-purple"
                         href="https://cims.nyu.edu/dynamic/ ">Courant, New York University</a>.</p>
-                <p><a class="link-blue " href="mailto:arun.kumar.patro@gmail.com ">[ email ]</a> <a class="link-blue "
-                        href="https://twitter.com/arunpatro ">[ twitter ]</a> <a class="link-blue "
-                        href="https://github.com/arunpatro ">[ github ]</a>
-                    <a class="link-gray" href="pdfs/arunpatro_resume.pdf " role="button ">[ my resume ]</a>
-                </p>
-            </div>
-            <!-- <div class="row">
-                <br>
+                        <p><a class="link-blue " href="mailto:arun.kumar.patro@gmail.com ">[ email ]</a> <a class="link-blue "
+                            href="https://twitter.com/arunpatro ">[ twitter ]</a> <a class="link-blue "
+                            href="https://github.com/arunpatro ">[ github ]</a>
+                            <a class="link-gray" href="pdfs/arunpatro_cv.pdf " role="button ">[ my cv ]</a>
+                        </p>
+                    </div>
+                    <hr>
+                    <br>
+                </div>
+                <!-- <br>
                 <h6>Here are some of my thoughts:</h6>
-                <br>
-            </div> -->
-            <hr>
-            <br>
+                <br> -->
+            </div>
             <div class="row">
                 <!-- <div class="col-lg-2">
-                    <img src="imgs/bayesian.jpg" alt="Small Image" class="img-fluid">
+                    <img src="" alt="Small Image" class="img-fluid">
                 </div> -->
                 <div class="col-lg-10">
-                    <h5 class="text-left"><a class="link-red" href="/blog/mcts">Monte Carlo Tree Search for Code Generation using LLMs</a></h5>
-                    <p class="text-left" style="text-align: justify;">We combine a pre-trained transformer model aka deepseek-coder with an adapted version of the Monte-Carlo Tree Search (MCTS) algorithm to guide the generation of code generation to solve HumanEval and VerilogEval.</p>
+                    <h5 class="text-left"><a class="link-red" href="/blog/gptx">GPTX: A simple implementation of GPT-2 in Rust and CPP on CPU</a><a style="margin-left: 2rem;" class="link-gray" href="https://github.com/arunpatro/gptx">[ github ]</a></h5>
+                    <p class="text-left">We benchmark the multiprocessing capability of Rust and CPP by comparing simple implementations of GPT-2 using Rust+Rayon, and CPP+OpenMP libraries.</p>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-lg-2">
+                    <img src="" alt="Small Image" class="img-fluid">
+                </div> -->
+                <div class="col-lg-10">
+                    <h5 class="text-left"><a class="link-red" href="/blog/mcts">Monte Carlo Tree Search for Code Generation using LLMs</a><a style="margin-left: 2rem;" class="link-gray" href="https://github.com/rmshin/llm-mcts">[ github ]</a></h5>
+                    <p class="text-left">We combine a pre-trained transformer model aka deepseek-coder with an adapted version of the Monte-Carlo Tree Search (MCTS) algorithm to guide the generation of code generation to solve HumanEval and VerilogEval.</p>
                 </div>
             </div>
             <div class="row">
@@ -46,9 +57,9 @@
                     <img src="imgs/bayesian.jpg" alt="Small Image" class="img-fluid">
                 </div> -->
                 <div class="col-lg-10">
-                    <h5 class="text-left"><a class="link-red" href="/blog/bayesian-ml/intro">Three problems to motivate
+                    <h5 class="text-left"><a class="link-red" href="/blog/bayes-intro">Three problems to motivate
                             Bayesian Machine Learning</a></h5>
-                    <p class="text-left" style="text-align: justify;">Andrew Wilson's course on Bayesian ML really sold
+                    <p class="text-left">Andrew Wilson's course on Bayesian ML really sold
                         me on the idea of probabilistic thinking. The idea of bayesian model average, infinite
                         parameters and epistemic uncertainity. I write about the solving 3 problems using a bayesian
                         framework.</p>
@@ -60,8 +71,8 @@
                 </div> -->
                 <div class="col-lg-10">
                     <h5 class="text-left"><a class="link-red" href="/blog/graphics">Benchmaring Rust vs. CPP for
-                            graphics</a></h5>
-                    <p class="text-left" style="text-align: justify;">I write about implementing 3 graphics programs in
+                            graphics</a><a style="margin-left: 2rem;" class="link-gray" href="https://github.com/arunpatro/raybench">[ github ]</a></h5>
+                    <p class="text-left">I write about implementing 3 graphics programs in
                         Rust benchmarked with CPP, and observe that Rust is faster. Comparision only on CPU.</p>
                 </div>
             </div>
@@ -72,7 +83,7 @@
                 <div class="col-lg-10">
                     <h5 class="text-left"><a class="link-red" href="/blog/rubiks">An intuitive guide to solving a
                             Rubik's cube using only 1 algorithm</a></h5>
-                    <p class="text-left" style="text-align: justify;">I explore the Old Pochman method to solve a
+                    <p class="text-left">I explore the Old Pochman method to solve a
                         Rubik's cube, often used to solve blindfold. I go on to show that Old Pochman can be done in
                         only 1 algorithm.</p>
                 </div>
@@ -84,7 +95,7 @@
                 <div class="col-lg-10">
                     <h5 class="text-left"><a class="link-red" href="/blog/crai">Thoughts on building a theoretical
                             Clash Royale AI</a></h5>
-                    <p class="text-left" style="text-align: justify;">Clash Royale, a mobile phone card game, is 21st
+                    <p class="text-left">Clash Royale, a mobile phone card game, is 21st
                         century chess. I write about how to formally model it as a computational problem, and solve it
                         using Reinforcement
                         Learning. I talk about what a Clash Royale AI should be able to achieve in the process of
