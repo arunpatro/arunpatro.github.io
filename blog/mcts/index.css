@@ -1,25 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 body {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
   font-family: 'Open Sans', sans-serif;
   font-optical-sizing: auto;
   font-variation-settings: 'wdth' 100;
   font-weight: 400;
   font-style: normal;
-  /* max-width: 40rem; */
-  /* margin-top: 1rem; */
-  /* margin-bottom: 1rem; */
-  margin: 2em 2em;
+  margin: 2em auto; /* Keep this for top and bottom margin, auto for left/right to center */
+  padding: 0 1rem; /* Ensures content doesn't touch the edges */
   font-size: 1rem;
   line-height: 1.4rem;
+  box-sizing: border-box; /* Include padding in the element's total width */
+  width: auto; /* Let the width be automatic, respecting padding and margin */
+  max-width: 40rem; /* Maximum width */
+}
+
+@media screen and (max-width: 40rem) {
+  .container {
+    margin: 2em 1em; /* Smaller side margins for small screens */
+    padding: 0 1em; /* Adjust padding for smaller screens */
+    width: calc(100% - 2em); /* Adjust width to account for margin */
+  }
+}
+
+
+#details {
+  text-align: center;
 }
 
 h1,
-h2,
-h3 {
+h2 {
   font-family: 'Lora', serif;
   font-optical-sizing: auto;
   font-style: normal;
+  text-align: center;
 }
 h1 {
   font-size: 3rem;

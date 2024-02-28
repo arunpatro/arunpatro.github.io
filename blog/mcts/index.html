@@ -29,19 +29,23 @@
     <script src="cytoscape-dagre.js"></script>
     <title>LLM code gen</title>
   </head>
+  
   <body>
+    <div class="container">
     <h1>Monte Carlo Tree Search for Code Generation using LLMs</h1>
-    <p class="authors">
-      by <a href="https://github.com/rmshin" target="_blank">Robert Shin</a> and
-      <a href="https://arunpatro.github.io/" target="_blank">Arun Patro</a>
-    </p>
-    Date: 2024-02-25
-    <br/>
-    <a
-        href="https://github.com/rmshin/llm-mcts"
-        target="_blank"
-        >[View on GitHub]</a
-      >
+    <div id="details">
+      <p class="authors">
+        by <a href="https://github.com/rmshin" target="_blank">Robert Shin</a> and
+        <a href="https://arunpatro.github.io/" target="_blank">Arun Patro</a>
+      </p>
+      Date: 2024-02-25
+      <br/>
+      <a
+          href="https://github.com/rmshin/llm-mcts"
+          target="_blank"
+          >[View on GitHub]</a
+        >
+    </div>
     <hr>
     <p>
       There have been a slew of LLMs released to the public over the past ~12 months that have shown
@@ -386,15 +390,17 @@ for prompt, task_id in prompts_ids:
       <b>branching factor</b> (the number of children at each node), even slight changes in these
       values can meaningfully impact the feasibility of the search.
     </p>
-    <input type="number" id="tree-branch-factor" name="tree-branch-factor" value="2" />
-    <label id="branch-factor-label" for="tree-branch-factor">Branching factor</label>
-    <label id="branch-factor-outcomes"># total outcomes:</label>
-    <label id="branch-factor-depth">(depth = 5)</label>
-    <div id="branching-cy"></div>
-    <p class="caption">
-      Try changing the branching factor of the tree above to see how it affects the number of total
-      outcomes to compute.
-    </p>
+    <div id="branching-div">
+      <label id="branch-factor-label" for="tree-branch-factor">Set Branching Factor</label>
+      <input type="number" id="tree-branch-factor" name="tree-branch-factor" value="2" /><br/>
+      <label id="branch-factor-outcomes">No. of total outcomes:</label>
+      <label id="branch-factor-depth">(depth = 5)</label>
+      <div id="branching-cy"></div>
+      <p class="caption">
+        Try changing the branching factor of the tree above to see how it affects the number of total
+        outcomes to compute.
+      </p>
+    </div>
     <p>
       Though difficult to estimate, we'd expect code text generation to have a depth & branching
       factor on the order of hundreds, if not thousands. A typical game of Go, for reference, takes
@@ -898,6 +904,7 @@ def get_top_k_tokens(curr_node, k=3):
       future enquiry.
     </p>
     <footer><a href="https://github.com/rmshin/llm-mcts" target="_blank">View on GitHub</a></footer>
+  </div>
   </body>
   <script>
     var treeData;
@@ -1008,12 +1015,12 @@ def get_top_k_tokens(curr_node, k=3):
 
         // handle first render
         renderBranching(bfInput.value);
-        bfOutcomesLabel.textContent = `# total outcomes: ${bfInput.value ** depth}`;
+        bfOutcomesLabel.textContent = `No. of total outcomes: ${bfInput.value ** depth}`;
 
         // update tree upon branching factor input changes
         bfInput.addEventListener('input', (e) => renderBranching(e.target.value));
         bfInput.addEventListener('input', (e) => {
-          bfOutcomesLabel.textContent = `# total outcomes: ${e.target.value ** depth}`;
+          bfOutcomesLabel.textContent = `No. of total outcomes: ${e.target.value ** depth}`;
         });
         bfInput.addEventListener('blur', (_) => {
           const val = Math.max(bfInput.min, Math.min(bfInput.value, bfInput.max));
