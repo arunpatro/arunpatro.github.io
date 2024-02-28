@@ -19,7 +19,7 @@ body {
   line-height: 1.4rem;
   box-sizing: border-box; /* Include padding in the element's total width */
   width: auto; /* Let the width be automatic, respecting padding and margin */
-  max-width: 40rem; /* Maximum width */
+  max-width: 50rem; /* Maximum width */
 }
 
 @media screen and (max-width: 40rem) {
