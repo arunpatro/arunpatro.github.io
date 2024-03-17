@@ -1,0 +1,155 @@
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\usepackage{hyperref}
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
+
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\name{Arun Patro} % Your name
+% \address{ \href{https://arunpatro.com}{arunpatro.com} | arun.kumar.patro@gmail.com } % One line below your name
+
+\address{\href{https://arunpatro.com}{arunpatro.com}} % Your address
+\address{\href{mailto:arun.kumar.patro@gmail.com}{arun.kumar.patro@gmail.com}}
+
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+{\bf Courant Institute, New York University} \hfill {2022 - Now}
+\\ MS in Computer Science
+\\
+\\{\bf Indian Institute of Technology, Kharagpur} \hfill {2013 - 2018}
+\\ B.Tech. + M.Tech. in Electrical Engineering (Signal Processing)
+% \\ Dept. of Electrical Engineering \hfill {}
+% \\ Dept. of Electrical Engineering \hfill {GPA: 8.03}
+\end{rSection}
+
+
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+
+\begin{rSection}{Work Experience}
+\begin{rSubsection}{Normal Computing}{New York City}{ML Resident}{Jun 2023 - Dec 2023}
+
+\item \textbf{Tree Search with LLMs}: Worked on {\it Tree-of-Thought} + {\it Reflexion} style planning algorithms for objective problem solving. Developed \href{https://github.com/normal-computing/branches}{\textbf{branches}}, an OSS to visually interact with these trees.
+\item \textbf{Verilog Code Gen}: Explored LLMs for generating Verilog code using prompting, contrained generation, execution feedback and Reinforcement Learning methods to solve \textbf{VerilogEval}.
+\end{rSubsection}
+
+\begin{rSubsection}{Meesho}{Bangalore + Hyderabad}{Data Scientist - 2}{Nov 2021 - Aug 2022}
+
+\item \textbf{Visual Taxonomy Tagging}: Built the Image Engine which powered Attribute Extraction, Similarity Learning and Brand Logo identification across 35 categories and avg 10m products per month. Deployed and maintained the ML systems end-to-end with monitoring, logging, sanity checks and other pipelines. This led to  ~30\%  savings = \$20M per year
+\end{rSubsection}
+
+
+\begin{rSubsection}{Myntra Designs}{Bangalore}{Data Scientist | Supply Chain Inbound}{Mar 2019 - Aug 2020}
+\item \textbf{Regional Utilisation}: Modelled the optimal allocation of products to Myntra's principal warehouses considering their dynamic capacity. Estimated the regional demand of products using product attributes as features and MLP model. Optimized using Integer Programming.
+\item \textbf{Style Grading}: Modeled style sales potential using probabilistic model on similar styles' data. Grade score is $p(CVR > CVR_{threshold})$. Improved Revenue-per-Impression by 10\%.
+% \item \textbf{De-Duplication}: Scaled triplet embedding networks to identify duplicate styles in the catalouge. 
+
+\end{rSubsection}
+
+\begin{rSubsection}{Myntra Designs}{Bangalore}{Data Scientist | Image Sciences}{Jul 2018 - Mar 2019}
+
+\item \textbf{GAN Experiments}: Experimented with text-to-image generation using Attentional GANs to generate novel designs conditioned on natural language. We showed the control of specific attributes using careful interpolation. Proposed gradient aware loss functions for estimating noise vectors in GANs. Improved symmetry of stripes in generations by imposing symmetry constraints.
+\end{rSubsection}
+\end{rSection}
+
+\begin{rSection}{Selected Blogs}
+\begin{itemize}
+\item \href{https://arunpatro.github.io/blog/mcts/}{\bf Monte Carlo Tree Search for Code Generation using LLMs} 
+\item \href{https://blog.normalcomputing.ai/posts/2023-11-05-search-based-reasoning/search-based-reasoning.html}{\bf Developing Advanced Reasoning and Planning Algorithms with LLMs} 
+\item \href{https://arunpatro.github.io/blog/graphics/}{\bf Benchmaring rust-vs-cpp for graphics} 
+\end{itemize}
+
+\end{rSection}
+
+\clearpage
+% \vspace{15mm}
+\begin{rSection}{Research and Publications}
+\begin{rSubsection}{CVIT, International Institute of Information Technology - Hyderabad}{Hyderabad}{Research Fellow | Vision for Mobility }{Sep 2020 - Sep 2021}
+Worked on improving object detectors and understanding the role of contextual objects to aid scene understanding. Experimented with Compositional Models and Part Detectors for robust object detection under partial occlusion of traffic objects on BDD, KITTI and 2000km of IDD.
+\end{rSubsection}
+
+{\bf Intelligent Warehouse Allocator for Optimal Regional Utilization} \href{https://arxiv.org/abs/2007.05081}{[link]}
+\\{AI for Fashion Supply Chain Workshop, KDD 2020}
+\\{\it Girish Sathyanarayana, Arun Patro}
+% \\\url{https://arxiv.org/abs/2007.05081}
+
+{\bf Let AI Clothe You: Diversified Fashion Generation}
+\href{https://doi.org/10.1007/978-3-030-21074-8_7}{[link]}
+\\{Computer Vision -– Workshops, ACCV 2018}
+\\{\it Rajdeep H. Banerjee, Anoop Rajagopal, Nilpa Jha, Arun Patro, Aruna Rajan}
+% \\\url{https://doi.org/10.1007/978-3-030-21074-8_7}
+
+\textbf{Evaluation of Loss Functions for Estimation of Latent Vectors from GAN}
+\href{https://ieeexplore.ieee.org/abstract/document/8517097}{[link]}
+\\{International Workshop on Machine Learning for Signal Processing (MLSP)}
+\\{\it Arun Patro, Vishnu Makkapati, Jayanta Mukhopadhyay}
+% \\\url{https://ieeexplore.ieee.org/abstract/document/8517097}
+
+\textbf{Enhancing Symmetry in GAN Generated Fashion Images}
+\href{https://doi.org/10.1007/978-3-319-71078-5_34}{[link]}
+\\{BCS SGAI International Conference on AI-2017}
+\\{\it Vishnu Makkapati, Arun Patro}
+% \\\url{https://doi.org/10.1007/978-3-319-71078-5_34}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	Projects
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Projects}
+{\bf \href{https://arunpatro.github.io/blog/gptx/}{GPTX: Comparing multi-processing features of Rust and CPP using GPT-2} } \hfill {Dec 2023}
+% \\with \emph{Ankit Singh} et al. 
+\\Benchmarked the performance speedup of GPT-2 models with increasing number of cores. Observed that peak performance is significantly more faster with Rust+Rayon than CPP+OpenMP. However, OpenMP achieves optimal scheduling and robust to thread-core mismatch. \\
+
+{\bf 3D Digitization of Humans for Size and Fit Estimation} \hfill {Aug 2020}
+% \\with \emph{Ankit Singh} et al. 
+\\Won BRONZE at annual Myntra Hackathon. Using two images of a person in tight fit clothes, we could estimate the size and fit of a person upto 1 inch accuracy. We used Open Pose and PIFuHD. \\
+\\{\bf Automated Fashion Generation using Generative Adversarial Networks} \hfill {2017 - 2018}
+\\with \emph{Vishnu Makkapati} and \emph{Prof. Jayanta Mukhopadhyay} 
+\\Modelled DCGAN variants to improve quality of fashion images with periodic patterns (stripes, checks, etc). Worked on inverting GANs to encode images in latent space, and create mix-and-match designs.\\
+\\{\bf Blur Kernel Estimation using Deep Convolutional Networks} \hfill {2016 - 2017}
+\\with \emph{Dr. Rajiv Ranjan Sahay}
+\\Estimation of guassian blur kernels to quantify the degree of defocus blur of non-uniformly blurred images. Trained CNNs to learn the blur parameter (sigma) of a gaussian blur from image patches. \\
+
+% \\{\bf Autonomous Ground Vehicle Research Group} \hfill {2014 - 2015}
+% \\with {\it Prof. Devasish Chakravarty} 
+% \\Detecting obstacles and lanes in grassy and city environments as part of the Computer Vision Team. AGV competes in Intelligent Ground Vehicle Competition and Mahindra Rise Prize.
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	Skills
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Skills}
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+Languages  & English, Hindi, Odia, Python, Rust, JS, C++\\
+Data Science & PyTorch, Python for Data Science Stack  \\
+Courses & Computer Graphics, Computer Vision, Machine Learning, Deep Learning, \\ & Bayesian Machine Learning, Signal Processing, Optimization, Natural Language \\ & Processing,  Deep Reinforcement Learning, Copyright Law, Indian Constitution Law
+\end{tabular}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	Extra 
+%----------------------------------------------------------------------------------------
+
+% \begin{rSection}{Outside Work}
+% I like electronic music, chess and swimming. Lately I have been playing chess and reading fantasy novels. In college, I was a governor of the english dramatics society - Encore (7 theater productions, 4 street plays). 
+% \end{rSection}
+
+% \begin{rSection}{Personal Traits}
+% \item Highly motivated and eager to learn new things.
+% \item Strong motivational and leadership skills.
+% \item Ability to work as an individual as well as in group.
+% \end{rSection}
+\end{document}

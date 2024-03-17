@@ -1,0 +1,266 @@
+\documentclass[letterpaper,10.7pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}
+  {\vspace{-2pt}\scshape\raggedright\large\bfseries}
+  {}{0em}
+  {}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeSubheadingTwo}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2}
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingThree}[3]{
+    \item
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+      \textbf{#1} & \textbf{#2} \\
+      \multicolumn{2}{@{}p{\textwidth}@{}}{#3} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://arunpatro.com/}{\Large Arun Patro}} & \href{mailto:arun.kumar.patro@gmail.com}{arun.kumar.patro@gmail.com}\\
+%   \href{http://arunpatro.com/}{http://arunpatro.com} & +1-332-248-6212 \\
+% \end{tabular*}
+
+\begin{center}
+  \textbf{\LARGE \scshape \textcolor{MidnightBlue}{Arun Patro}} \\ \vspace{1pt}
+  \small +1-332-248-6212 $|$ \href{mailto:arun.patro@nyu.edu}{\underline{arun.patro@nyu.edu}} $|$ 
+  \href{https://www.arunpatro.com}{\underline{arunpatro.com}} $|$ 
+  \href{https://www.linkedin.com/in/arun-patro-2085a984/}{\underline{linkedin.com/in/arunpatro} 
+  }
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{\textcolor{MidnightBlue}{Education}}
+\resumeSubHeadingListStart
+\resumeSubheading
+{NYU Courant Institute of Mathematical Sciences}{}
+{Masters in Computer Science}{Sep 2022 -- Present}
+\resumeItemListStart
+\resumeItem{\small{{\color{MidnightBlue}{Key Courses:}}
+Programming Languages, Natural Language Processing, Bayesian Machine Learning, Deep Reinforcement Learning, Computer Graphics, Multi-core systems, Cryptocurrencies and Blockchains, Operating Systems}}
+\resumeItemListEnd %\vspace{0.1in}
+%   \small{{\color{MidnightBlue}{Key Courses Taken:}} Discrete Mathematics, Modern Algebra, Game Theory, Optimization, Theory of Computation, Matrix Computations, Advanced Probability, OS, Networks, Databases}
+\resumeSubheading
+{Indian Institute of Technology, Kharagpur}{}
+{B.Tech. + M.Tech. in Electrical Engineering (Signal Processing)}{Jul 2013 -- Apr 2018}
+\resumeItemListStart
+\resumeItem{\small{{\color{MidnightBlue}{Key Courses:}} Image Processing, Machine Learning, Deep Learning, Digital Signal Processing, Optimization, Copyright Law}}
+\resumeItemListEnd \vspace{0.1in}
+\resumeSubHeadingListEnd
+%   \small{{\color{MidnightBlue}{Key Courses Taken:}} Discrete Mathematics, Modern Algebra, Game Theory, Optimization, Theory of Computation, Matrix Computations, Advanced Probability, OS, Networks, Databases}
+%\small{}
+
+\vspace{-0.2in}
+%-----------EXPERIENCE-----------
+\section{\textcolor{MidnightBlue}{Industry Experience}}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Normal Computing}{Jun 2023 - Dec 2023}
+{ML Resident}{New York City, USA}
+\resumeItemListStart
+\resumeItem{\textbf{Branches}: Built a framework to visualize advanced reasoning and planning algorithms with LLMs. LLMs can problem solve better when they think in Trees, and explore multiple ideas slowly using System-2 thinking, while also objectively verifying the generations. }
+\resumeItem{\textbf{Verilog Code Gen}: Explored LLMs for Verilog Code Generation, using prompting, contrained generation, execution feedback and Reinforcement Learning to improve the results on the VerilogEval dataset.}
+\resumeItemListEnd 
+
+\resumeSubheading
+{Meesho}{Nov 2021 - Aug 2022}
+{Data Scientist - II}{Bangalore, India}
+\resumeItemListStart
+\resumeItem{\textbf{Taxonomy Recognition}: Built the founding Image Engine powering Attribute Extraction, Similarity Learning, Brand Logo identification, Watermark and Fraud identification across multiple product categories. 80\% pareto = 35 categories x 10m products per month (avg)}
+\resumeItem{Deployed and maintained the end-to-end CV-ML system with MLOps.  \color{blue}{Project Impact: 30\% Reduction in cost = \$20M per year}} 
+% \resumeItem{\textbf{Tech Stack}: PyTorch, PyTorch Lightning, Neptune.ai, PySpark, AWS-EMR, DataBricks}
+\resumeItemListEnd 
+% \vspace{0.1in}
+%\resumeSubHeadingListEnd
+
+\resumeSubheading
+{Myntra Designs}{Jul 2018 - Aug 2020}{Data Scientist}{Bangalore, India}
+\resumeItemListStart
+\resumeItem{\textbf{Regional Utilisation}: Modelled the optimal allocation of products to Myntra's principal warehouses considering the dynamic capacity of warehouses. Estimated the regional demand of products using product attributes as features and MLP model. \color{blue}{\href{https://arxiv.org/abs/2007.05081}{\color{blue}{[arxiv]}} \\ \color{blue}{Project Impact: 27\% Improvement in RU; 20\% Improvement in 2DD}}}
+\resumeItem{\textbf{GAN Experiments}: Experimented with text-to-image generation, and interpolations using Attentional GANs. Proposed different gradient aware loss functions for estimating noise vectors in GANs.}
+% \resumeItem{\textbf{Tech Stack}: PyTorch, Python-MIP, Azure, TensorFlow, Flask, HTML/CSS/JS}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{\textcolor{MidnightBlue}{Publications}}
+\resumeSubHeadingListStart
+
+% \resumeSubheading
+% {Detection of Partially Occluded and Missing Objects from Indian Driving Scences}{Sep 2020 - Sep 2021}
+% {Dr. CV Jawahar, Professor, Vision for Mobility Lab, CVIT}{IIIT - Hyderabad}
+% \resumeItemListStart
+% \resumeItem{As part of the \textbf{Vision for Mobility} lab, my focus was on improving object detectors and model the context of objects to aid in scene understanding. This involved robust object detection under partial occlusion of traffic objects. Experimented with Compositional Models and Part Detectors. Worked on 2000km of Indian Driving Dataset, BDD, IceVision, MTSD, etc} 
+% \resumeItemListEnd
+% \vspace{0.1in}
+ 
+\resumeSubheading
+{Intelligent Warehouse Allocator for Optimal Regional Utilization \href{https://arxiv.org/abs/2007.05081}{\color{blue}{[arxiv]}}}{}
+{Girish Sathyanarayana, \textbf{Arun Patro}}{AI for Fashion Supply Chain Workshop, KDD 2020}
+% \vspace{0.1in}
+
+\resumeSubheading
+{Let AI Clothe You: Diversified Fashion Generation \href{https://doi.org/10.1007/978-3-030-21074-8_7}{\color{blue}{[link]}}}{}
+{Rajdeep H. Banerjee, Anoop Rajagopal, Nilpa Jha, \textbf{Arun Patro}, Aruna Rajan}{Computer Vision - Workshops, ACCV 2018}
+% \vspace{0.1in}
+
+\resumeSubheading
+{Evaluation of Loss Functions for Estimation of Latent Vectors from GAN \href{https://ieeexplore.ieee.org/abstract/document/8517097}{\color{blue}{[link]}}}{}
+{\textbf{Arun Patro}, Vishnu Makkapati, Jayanta Mukhopadhyay}{IEEE Workshop MLSP - 2018}
+% \vspace{0.1in}
+
+\resumeSubheading
+{Enhancing Symmetry in GAN Generated Fashion Images \href{https://doi.org/10.1007/978-3-319-71078-5_34}{\color{blue}{[link]}}}{}
+{Vishnu Makkapati, \textbf{Arun Patro}}{BCS SGAI International Conference on AI-2017}
+
+\resumeSubHeadingListEnd
+
+\section{\textcolor{MidnightBlue}{Blogs}}
+
+\resumeSubHeadingListStart
+
+\resumeSubheadingTwo
+{Monte Carlo Tree Search for Code Generation using LLMs \href{https://arunpatro.github.io/blog/mcts/}{\color{blue}[link]} \href{https://github.com/rmshin/llm-mcts/}{\color{blue}[github]} }{}
+
+\resumeSubheadingTwo
+{Developing Advanced Reasoning and Planning Algorithms with LLMs \href{https://blog.normalcomputing.ai/posts/2023-11-05-search-based-reasoning/search-based-reasoning.html}{\color{blue}[link]} \href{https://github.com/normal-computing/branches/}{\color{blue}[github]} }{}
+
+
+\resumeSubheadingTwo
+{GPTX: Comparing multi-processing features of Rust and CPP using GPT-2 \href{https://arunpatro.github.io/blog/gptx/}{\color{blue}[link]} \href{https://github.com/arunpatro/gptx}{\color{blue}[github]} }{}
+
+
+\resumeSubheadingTwo
+{Benchmaring rust-vs-cpp for graphics \href{https://arunpatro.github.io/blog/graphics/}{\color{blue}[link]} \href{https://github.com/arunpatro/raybench}{\color{blue}[github]} }{}
+
+
+\resumeSubHeadingListEnd
+
+\section{\textcolor{MidnightBlue}{Selected Projects}}
+\resumeSubHeadingListStart
+
+\resumeSubheadingThree
+{3D Digitization of Humans for Size and Fit Estimation}{Aug 2020}{Won BRONZE at annual Myntra Hackathon. Using two images of a person in tight fit clothes, we could estimate the size and fit of a person upto 1 inch accuracy. We used Open Pose and PIFuHD.}
+% \vspace{0.1in}
+
+\resumeSubheadingThree
+{Automated Fashion Generation using GANs}{2017 - 2018}{Experimented with GANs to improve quality of fashion images with periodic signals (stripes, checks, etc). Worked on inverting GANs to obtain latent code to enable mixing-and-matching designs.}
+
+
+\resumeSubHeadingListEnd
+
+\section{\textcolor{MidnightBlue}{Skills}}
+{\textbf{Languages:} Python, C++, Rust, JS}
+
+% \section{\textcolor{MidnightBlue}{About Me}}
+% Hi there! I write stuff at  \href{https://arunpatro.com}{\color{blue}{[arunpatro.com]}}
+
+{\fontsize{0.1}{12}\selectfont \color{white}{Pandas Python NumPy SciPy Scikit Learn PyTorch Tensorflow AWS Azure SQL Database JavaScript Rust HTML CSS Flask Weights and Biases Machine Learning Deep Learning Computer Vision Image Processing NLP Natural Language Stable Diffusion Attention Object Detection PySpark EMR S3 Linux OS }}
+
+
+%-------------------------------------------
+\end{document}
