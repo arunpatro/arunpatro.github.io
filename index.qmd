@@ -1,0 +1,58 @@
+---
+# title: "Your Document Title"
+format:
+  html:
+    css: styles.css
+    embed-resources: true
+#     minimal: true
+#     code-copy: true
+---
+
+```{=html}
+<div align="center">
+<h1>Hello World!</h1>
+<img style="border-radius: 50%; padding: 20px" width="256" src="imgs/arun-4.jpeg" alt="Profile Image">
+<p class="lead">I'm Arun</p>
+<p class="lead">I am studying <a class="link-green"
+        href="https://cs.nyu.edu/home/index.html">Computer Science</a> at <a class="link-purple"
+        href="https://cims.nyu.edu/dynamic/">Courant, New York University</a>.</p>
+<p><a class="link-blue" href="mailto:arun.kumar.patro@gmail.com">email</a> • <a
+        class="link-blue" href="https://twitter.com/arunpatro">twitter</a> • <a
+        class="link-blue" href="https://github.com/arunpatro">github</a>
+     • <a class="link-gray" href="pdfs/arunpatro_resume.pdf">resume</a>
+</p>
+</div>
+<br/>
+```
+---
+
+### Monte Carlo Tree Search for Code Generation using LLMs 
+[__blog__](/blog/mcts) • [__github__](https://github.com/rmshin/llm-mcts)
+
+We combine a pre-trained transformer model, referred to as deepseek-coder, with an adapted version of the Monte-Carlo Tree Search (MCTS) algorithm to guide the generation of code solutions for HumanEval and VerilogEval. 
+
+### GPTX: A simple implementation of GPT-2 in Rust and CPP on CPU 
+[__blog__](/blog/gptx) • [__github__](https://github.com/arunpatro/gptx)
+
+Exploring the multiprocessing capabilities of Rust and C++ by comparing simple implementations of GPT-2 using Rust+Rayon, and C++ with OpenMP libraries. 
+
+### Three problems to motivate Bayesian Machine Learning 
+[__blog__](/blog/bayes-intro)
+
+Reflecting on Andrew Wilson's course on Bayesian ML, I discuss the impact of probabilistic thinking and bayesian model averaging through the lens of solving three key problems using a Bayesian framework.
+
+### Benchmarking Rust vs. CPP for graphics
+[__blog__](/blog/graphics) • [__github__](https://github.com/arunpatro/raybench)
+
+I discuss the performance of Rust compared to C++ in implementing three graphics programs, demonstrating Rust's superior performance on CPU-only tests. 
+
+### An intuitive guide to solving a Rubik's cube using only 1 algorithm 
+[__blog__](/blog/rubiks)
+
+I explore the Old Pochmann method, a popular technique for solving Rubik's cubes blindfolded, and demonstrate how it can be effectively executed using a single algorithm.
+
+### Thoughts on building a theoretical Clash Royale AI 
+[__blog__](/blog/crai)
+
+Exploring Clash Royale as a modern computational challenge like chess, I discuss the development of an AI using Reinforcement Learning to navigate and potentially master this game.
+
